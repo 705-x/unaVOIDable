@@ -1,0 +1,45 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1769792878
+icon.svg::CompressedTexture2D::7234736451110295724::1769791762::1769792879::1::::<><><>0<>0<>d7ac0f4b75a4f77a004f8963a269e616<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+::res://data_classes/::1769791762
+Item.cs::CSharpScript::703026592401022868::1769791762::0::1::::<><><>0<>0<><>::
+Prop.cs::CSharpScript::6002205987195829262::1769791762::0::1::::<><><>0<>0<><>::
+::res://data_classes/Inventory/::1769791762
+EquipmentInventory.cs::CSharpScript::3671649007292995114::1769791762::0::1::::<><><>0<>0<><>::
+InventoryGrid.cs::CSharpScript::62519714299805753::1769791762::0::1::::<><><>0<>0<><>::
+InventorySlot.cs::CSharpScript::1260813205703050455::1769791762::0::1::::<><><>0<>0<><>::
+::res://scenes/::1769791763
+::res://scenes/common/::1769791762
+::res://scenes/common/assets/::1769791763
+Bez tytułu.png::CompressedTexture2D::4149080172420212884::1769791762::1769792879::1::::<><><>0<>0<>e248d7bcdae83aafebf86a53aae32630<>res://.godot/imported/Bez tytułu.png-66b232b9b3b16b39f106e1f5917399b8.ctex::
+blood_splatter.png::CompressedTexture2D::4792261093372719422::1769791763::1769792879::1::::<><><>0<>0<>fa4b75285afa092360ea74f9ec1fb007<>res://.godot/imported/blood_splatter.png-0e651fd00d4f7bb15d8b602a5251407b.ctex::
+fog_of_war.png::CompressedTexture2D::6188489338904226193::1769791763::1769792879::1::::<><><>0<>0<>65e2fe713d9d603e7ce2e0121699dff7<>res://.godot/imported/fog_of_war.png-8c947378630f331fadaafd9b471ebcae.ctex::
+room.png::CompressedTexture2D::4246520398609995733::1769791763::1769792879::1::::<><><>0<>0<>c281de3446d507fd515077ab49c24f05<>res://.godot/imported/room.png-4089b58fff7aa4b4e59f09f712e775af.ctex::
+::res://scenes/entities/::1769791763
+::res://scenes/entities/player/::1769791763
+Player.cs::CSharpScript::2738409308847768686::1769791763::0::1::::<><><>0<>0<><>::
+player.tscn::PackedScene::9043171343935103335::1769791763::0::1::::<><><>0<>0<><>::uid://bfarg3vfbvjm1::::res://scenes/entities/player/Player.cs<>uid://dncovm0fhvn4g::::res://scenes/entities/player/assets/run1.png
+::res://scenes/entities/player/assets/::1769791763
+run1.png::CompressedTexture2D::8076733982590262028::1769791763::1769792879::1::::<><><>0<>0<>93d22d74f9082500a1d649638dc410c7<>res://.godot/imported/run1.png-44c3413a627b0d3fc46408f82777e908.ctex::
+run2.png::CompressedTexture2D::2641063335949514146::1769791763::1769792879::1::::<><><>0<>0<>8aa3efdcbd67caa8560ff5fed6b924a8<>res://.godot/imported/run2.png-4db8cb82a1ac95087942a540204327f4.ctex::
+::res://scenes/groundItem/::1769791763
+ItemNode2D.cs::CSharpScript::6800924132452127020::1769791763::0::1::::<><><>0<>0<><>::
+item_node_2d.tscn::PackedScene::5486120432848361136::1769791763::0::1::::<><><>0<>0<><>::uid://c35ohyhqqt1wa::::res://scenes/groundItem/ItemNode2D.cs
+::res://scenes/HUD/::1769791762
+hud.tscn::PackedScene::5653548861131897356::1769791762::0::1::::<><><>0<>0<><>::uid://cnijlmnyuqe2p::::res://scenes/test(main)/testing.gdshader<>uid://cajn3tdkyey3g::::res://scenes/common/assets/blood_splatter.png
+::res://scenes/HUD/src/::1769791762
+hud.gdshader::Shader::6070174550096246693::1769791762::0::1::::<><><>0<>0<><>::
+::res://scenes/prop/::1769791763
+PropNode2D.cs::CSharpScript::8279184696142818682::1769791763::0::1::::<><><>0<>0<><>::
+prop_node_2d.tscn::PackedScene::3861553479148954310::1769791763::0::1::::<><><>0<>0<><>::uid://dp7q7yp4r2sde::::res://scenes/prop/PropNode2D.cs
+::res://scenes/test(main)/::1769791763
+Crate.tres::Resource/Prop::6340160098925685550::1769791763::0::1::::<><><>0<>0<><>::uid://crrrpq05bi10e::::res://data_classes/Prop.cs<>uid://84ppwekbdxqc::::res://scenes/test(main)/assets/Zrzut ekranu 2026-01-28 201912.png
+Testing.cs::CSharpScript::8297867015500305817::1769791763::0::1::::<><><>0<>0<><>::
+testing.gdshader::Shader::5702378104861423797::1769791763::0::1::::<><><>0<>0<><>::
+testing.tscn::PackedScene::5133828066630398848::1769791763::0::1::::<><><>0<>0<><>::uid://d13tyfxx8qh56::::res://scenes/entities/player/player.tscn<>uid://b1rbtnssdfcfl::::res://scenes/common/assets/room.png<>uid://dqhswl758ppl6::::res://scenes/test(main)/Testing.cs<>uid://cmsvehb3jbbqq::::res://scenes/HUD/hud.tscn
+TestItem.tres::Resource/Item::8907118741021267154::1769791763::0::1::::<><><>0<>0<><>::uid://kas0lr3jnutg::::res://data_classes/Item.cs<>uid://b7dh8s6eu0qm4::::res://scenes/test(main)/assets/ak12uptop.png<>uid://c1bdnrvxa1deo::::res://scenes/test(main)/assets/ak12onground.png
+::res://scenes/test(main)/assets/::1769791763
+ak12onground.png::CompressedTexture2D::6600021972412052370::1769791763::1769792879::1::::<><><>0<>0<>c6d7b05978310ab71c69d63b2674ef7a<>res://.godot/imported/ak12onground.png-ca8a1aed68e5f93795b77728e22f188f.ctex::
+ak12uptop.png::CompressedTexture2D::4639141757039252925::1769791763::1769792879::1::::<><><>0<>0<>d6e79f9c020ceb3a42fcc4550d4e8644<>res://.godot/imported/ak12uptop.png-a98bb46154f20bf8a4b27534c062b6c3.ctex::
+Zrzut ekranu 2026-01-26 092037.png::CompressedTexture2D::1929860676203307342::1769791763::1769792879::1::::<><><>0<>0<>8bdb6f7edc02561c196dc55c808a5036<>res://.godot/imported/Zrzut ekranu 2026-01-26 092037.png-2c05c5f265c493464cedaabbcd2c4579.ctex::
+Zrzut ekranu 2026-01-28 201912.png::CompressedTexture2D::2377037498871629030::1769791763::1769792879::1::::<><><>0<>0<>19aabe158a42c6b58f00c0063f093196<>res://.godot/imported/Zrzut ekranu 2026-01-28 201912.png-d491243e1729b8ea580da144fc1ff03c.ctex::
