@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://d13tyfxx8qh56"]
+
+[ext_resource type="Script" uid="uid://bfarg3vfbvjm1" path="res://scenes/entities/player/Player.cs" id="1_abrql"]
+[ext_resource type="Texture2D" uid="uid://dncovm0fhvn4g" path="res://scenes/entities/player/assets/run1.png" id="2_abrql"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sfv1e"]
+radius = 36.0
+height = 74.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_symyc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_abrql")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_abrql"]
+offsets = PackedFloat32Array(0.013333334, 1)
+colors = PackedColorArray(1, 1, 1, 0.46666667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sglur"]
+gradient = SubResource("Gradient_abrql")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_abrql")
+
+[node name="Hurtbox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_sfv1e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.50000215, -3.5762787e-07)
+scale = Vector2(2.2187502, 2.25)
+sprite_frames = SubResource("SpriteFrames_symyc")
+
+[node name="HandPivot" type="Node2D" parent="."]
+
+[node name="itemsprite(INSTANCE)" type="AnimatedSprite2D" parent="HandPivot"]
+
+[node name="Camera" type="Camera2D" parent="."]
+limit_enabled = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 2.0
+blend_mode = 2
+range_item_cull_mask = 3
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_sglur")
+texture_scale = 30.11

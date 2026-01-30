@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Prop" load_steps=3 format=3 uid="uid://cwlhrmfqxlfpu"]
+
+[ext_resource type="Script" uid="uid://crrrpq05bi10e" path="res://data_classes/Prop.cs" id="1_di8m2"]
+[ext_resource type="Texture2D" uid="uid://84ppwekbdxqc" path="res://scenes/test(main)/assets/Zrzut ekranu 2026-01-28 201912.png" id="2_norwy"]
+
+[resource]
+script = ExtResource("1_di8m2")
+texture = ExtResource("2_norwy")
+Mass = 90.0
+Tall = true
+metadata/_custom_type_script = "uid://crrrpq05bi10e"

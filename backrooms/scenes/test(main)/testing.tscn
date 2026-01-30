@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfe4nskxkca8o"]
+
+[ext_resource type="PackedScene" uid="uid://d13tyfxx8qh56" path="res://scenes/entities/player/player.tscn" id="1_ryjsw"]
+[ext_resource type="Texture2D" uid="uid://b1rbtnssdfcfl" path="res://scenes/common/assets/room.png" id="1_u4inj"]
+[ext_resource type="Script" uid="uid://dqhswl758ppl6" path="res://scenes/test(main)/Testing.cs" id="1_x7x36"]
+[ext_resource type="PackedScene" uid="uid://cmsvehb3jbbqq" path="res://scenes/HUD/hud.tscn" id="3_i85fu"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_u4inj"]
+normal = Vector2(-1.3113583e-07, -1)
+distance = 5.0292974
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_u4inj"]
+polygon = PackedVector2Array(20.26, 3.73, 20.73, 22.74, 1.64, 22.15, 2, 4)
+
+[node name="Main" type="Node"]
+script = ExtResource("1_x7x36")
+
+[node name="Fog" type="CanvasModulate" parent="."]
+light_mask = 3
+visibility_layer = 3
+use_parent_material = true
+color = Color(0.15487596, 0.154876, 0.15487596, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+offset_left = -3457.0
+offset_top = -3557.9995
+offset_right = 4467.0
+offset_bottom = 4306.0005
+texture = ExtResource("1_u4inj")
+stretch_mode = 5
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-687, 76)
+scale = Vector2(2.515, 2.515)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1091.8489, -30.218687)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_u4inj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(273.161, -1445.7256)
+rotation = -3.1415925
+scale = Vector2(0.3976143, 0.3976143)
+shape = SubResource("WorldBoundaryShape2D_u4inj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(273.161, 1682.7037)
+scale = Vector2(0.3976143, 0.3976143)
+shape = SubResource("WorldBoundaryShape2D_u4inj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(2038.5686, -30.218687)
+rotation = -1.5707963
+scale = Vector2(0.15809713, 0.15809713)
+shape = SubResource("WorldBoundaryShape2D_u4inj")
+
+[node name="Player" parent="." instance=ExtResource("1_ryjsw")]
+position = Vector2(918, 503)
+
+[node name="Hud" parent="." instance=ExtResource("3_i85fu")]
+layer = 2
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(582, 253)
+occluder = SubResource("OccluderPolygon2D_u4inj")
+occluder_light_mask = 3
+
+[node name="ItemsOnGround" type="Node" parent="."]

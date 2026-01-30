@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvathsgu4rom5"]
+
+[ext_resource type="Script" uid="uid://dp7q7yp4r2sde" path="res://scenes/prop/PropNode2D.cs" id="1_tafab"]
+
+[node name="PropNode2D" type="RigidBody2D"]
+gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 10.0
+script = ExtResource("1_tafab")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="LightOccluder" type="LightOccluder2D" parent="."]
+
+[node name="CollisionPolygon" type="CollisionPolygon2D" parent="."]

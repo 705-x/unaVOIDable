@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckfrup548htlg"]
+
+[ext_resource type="Script" uid="uid://c35ohyhqqt1wa" path="res://scenes/groundItem/ItemNode2D.cs" id="1_2gyw0"]
+
+[node name="ItemNode2D" type="RigidBody2D"]
+collision_layer = 2
+gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 5.0
+script = ExtResource("1_2gyw0")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmsvehb3jbbqq"]
+
+[ext_resource type="Shader" uid="uid://cnijlmnyuqe2p" path="res://scenes/test(main)/testing.gdshader" id="1_glunx"]
+[ext_resource type="Texture2D" uid="uid://cajn3tdkyey3g" path="res://scenes/common/assets/blood_splatter.png" id="2_glunx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjobl"]
+shader = ExtResource("1_glunx")
+shader_parameter/saturation = 1.0
+
+[node name="Hud" type="CanvasLayer"]
+layer = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_jjobl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(960, 540)
+texture = ExtResource("2_glunx")
