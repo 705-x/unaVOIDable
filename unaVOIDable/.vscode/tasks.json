@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "D:/my_work/Godot_v4.5.1-stable_mono_win64.exe",
+            "type": "process",
+            "args": [
+                "--build-solutions",
+                "--path",
+                "${workspaceRoot}",
+                "--no-window",
+                "-q"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run-godot",
+            "type": "shell",
+            "command": "D:/my_work/Godot_v4.5.1-stable_mono_win64.exe",
+            "args": [
+                "--path",
+                "${workspaceFolder}"
+            ],
+            "problemMatcher": []
+    }
+    ]
+}

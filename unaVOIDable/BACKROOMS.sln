@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BACKROOMS", "BACKROOMS.csproj", "{52DBB2B9-30A7-40B7-B976-091C9DC7CF97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BACKROOMS", "BACKROOMS.csproj", "{77AD171C-9A38-47DD-8CAE-200EEC95121A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,11 +9,11 @@ Global
 	ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{52DBB2B9-30A7-40B7-B976-091C9DC7CF97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52DBB2B9-30A7-40B7-B976-091C9DC7CF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52DBB2B9-30A7-40B7-B976-091C9DC7CF97}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
-		{52DBB2B9-30A7-40B7-B976-091C9DC7CF97}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
-		{52DBB2B9-30A7-40B7-B976-091C9DC7CF97}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
-		{52DBB2B9-30A7-40B7-B976-091C9DC7CF97}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{77AD171C-9A38-47DD-8CAE-200EEC95121A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77AD171C-9A38-47DD-8CAE-200EEC95121A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77AD171C-9A38-47DD-8CAE-200EEC95121A}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{77AD171C-9A38-47DD-8CAE-200EEC95121A}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{77AD171C-9A38-47DD-8CAE-200EEC95121A}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{77AD171C-9A38-47DD-8CAE-200EEC95121A}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
 	EndGlobalSection
 EndGlobal

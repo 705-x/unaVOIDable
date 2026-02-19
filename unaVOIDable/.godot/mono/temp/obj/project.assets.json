@@ -88,19 +88,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Maciek\\.nuget\\packages\\": {}
+    "C:\\Users\\Ryzen\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\my_work\\unaVOIDable\\unaVOIDable\\BACKROOMS.csproj",
+      "projectUniqueName": "D:\\my_work\\unaVOIDable\\unaVOIDable\\BACKROOMS.csproj",
       "projectName": "BACKROOMS",
-      "projectPath": "F:\\my_work\\unaVOIDable\\unaVOIDable\\BACKROOMS.csproj",
-      "packagesPath": "C:\\Users\\Maciek\\.nuget\\packages\\",
-      "outputPath": "F:\\my_work\\unaVOIDable\\unaVOIDable\\.godot\\mono\\temp\\obj\\",
+      "projectPath": "D:\\my_work\\unaVOIDable\\unaVOIDable\\BACKROOMS.csproj",
+      "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
+      "outputPath": "D:\\my_work\\unaVOIDable\\unaVOIDable\\.godot\\mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Maciek\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -160,15 +160,15 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.23, 8.0.23]"
+            "version": "[8.0.24, 8.0.24]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.23, 8.0.23]"
+            "version": "[8.0.24, 8.0.24]"
           },
           {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.23, 8.0.23]"
+            "version": "[8.0.24, 8.0.24]"
           }
         ],
         "frameworkReferences": {
@@ -176,7 +176,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
