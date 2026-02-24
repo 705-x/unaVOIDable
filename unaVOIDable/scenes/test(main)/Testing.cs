@@ -16,10 +16,6 @@ public partial class Testing : Node
 	PackedScene SEQUENCE_START;
 	public override void _Ready()
 	{
-		/*while (!System.Diagnostics.Debugger.IsAttached)
-		{
-		System.Threading.Thread.Sleep(100);
-		}*/
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
 		LoadLevelRooms(0);
 		var packedScene = GD.Load<PackedScene>("res://scenes/groundItem/item_node_2d.tscn");
@@ -30,7 +26,7 @@ public partial class Testing : Node
 		Prop prop = GD.Load<Prop>("res://scenes/test(main)/Crate.tres");
 		spawnProp(new(10,10), packedScene, prop);
 
-		GenerateFloor(20);
+		GenerateFloor(100);
 
 	}
 		
@@ -67,27 +63,30 @@ public partial class Testing : Node
 				if(conn.Position != Vector2I.Zero || conn == start) continue;
 				
 				foreach(var dir in directions.OrderBy(x=>rand.Next())){
-					Vector2I newPos = currentRoom.Position + dir;
+					
+					var roomToGenerate = roomArray.PickRandom();
+					var newPos = currentRoom.Position;
+					var currentSize = currentRoom.size;
+					var toGenSize = getRoomSize(roomToGenerate);
+
+					if (dir == Vector2I.Up || dir == Vector2I.Down)
+						newPos.Y += (currentSize.Y/2 + toGenSize.Y/2) * dir.Y;
+					else
+						newPos.X += (currentSize.X/2 + toGenSize.X/2) * dir.X;
+						
 					if (!SpawnedRooms.Contains(newPos))
 					{
-						conn.Position = newPos;
-						var roomToGenerate = roomArray.PickRandom();
-						int sizeToMultiply;
-						if(dir == Vector2I.Up || dir == Vector2I.Down)
-						{
-							sizeToMultiply = getRoomSize(roomToGenerate).Y;
+						if(GenerateRoom(newPos, roomToGenerate)){
+							conn.size = getRoomSize(roomToGenerate);
+							conn.Position = newPos;
+    						QueuedRooms.Enqueue(conn);
+    						SpawnedRooms.Add(newPos);
+    						break;
 						}
-						else
-						{
-							sizeToMultiply = getRoomSize(roomToGenerate).X;
-						}
-						GenerateRoom(conn.Position * sizeToMultiply, roomToGenerate);
-						QueuedRooms.Enqueue(conn);
-						break;
 					}
 				}
 			}	
-		};
+		}
 	}
 
 	public List<RoomNode> GenerateFloorGraph(int count)

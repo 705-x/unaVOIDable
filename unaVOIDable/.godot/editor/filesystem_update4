@@ -1,0 +1,10 @@
+res://scenes/test(main)/Testing.cs
+res://scenes/prop/PropNode2D.cs
+res://data_classes/RoomNode.cs
+res://data_classes/Prop.cs
+res://scenes/entities/player/Player.cs
+res://scenes/groundItem/ItemNode2D.cs
+res://data_classes/Item.cs
+res://scenes/test(main)/testing.tscn
+res://scenes/common/assets/tilescenetes.tres
+res://scenes/test(main)/testing.gdshader
