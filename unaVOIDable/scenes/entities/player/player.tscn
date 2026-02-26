@@ -46,6 +46,7 @@ sprite_frames = SubResource("SpriteFrames_symyc")
 [node name="itemsprite(INSTANCE)" type="AnimatedSprite2D" parent="HandPivot"]
 
 [node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(0.08, 0.08)
 limit_enabled = false
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

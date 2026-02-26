@@ -14,6 +14,7 @@ public partial class Testing : Node
 	Array<PackedScene> roomArray = [];
 	Random rand = new();
 	PackedScene SEQUENCE_START;
+	int GeneratedRoomCounter = 0;
 	public override void _Ready()
 	{
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
@@ -26,15 +27,16 @@ public partial class Testing : Node
 		Prop prop = GD.Load<Prop>("res://scenes/test(main)/Crate.tres");
 		spawnProp(new(10,10), packedScene, prop);
 
-		GenerateFloor(100);
+		GeneratedRoomCounter = 0;
+		GenerateFloor(200);
+		GD.Print(GeneratedRoomCounter);
+		SolidifyOutlines();
 
 	}
-		
 	public bool IsCellOccupied(Godot.Vector2I pos)
 	{
 		return tileLayer.GetCellSourceId(pos) != -1;	
 	}
-		
 	public void GenerateFloor(int howMany)
 	{	
 		var graph = GenerateFloorGraph(howMany);
@@ -53,6 +55,7 @@ public partial class Testing : Node
 		GenerateRoom(start.Position, SEQUENCE_START);
 		SpawnedRooms.Add(start.Position);
 		QueuedRooms.Enqueue(start);
+		var lastDir = Vector2I.Down;
 
 		while(QueuedRooms.Count > 0)
 		{
@@ -74,21 +77,21 @@ public partial class Testing : Node
 					else
 						newPos.X += (currentSize.X/2 + toGenSize.X/2) * dir.X;
 						
-					if (!SpawnedRooms.Contains(newPos))
+					if (!SpawnedRooms.Contains(newPos) && dir != lastDir)
 					{
-						if(GenerateRoom(newPos, roomToGenerate)){
-							conn.size = getRoomSize(roomToGenerate);
-							conn.Position = newPos;
-    						QueuedRooms.Enqueue(conn);
-    						SpawnedRooms.Add(newPos);
-    						break;
-						}
+    					var res = GenerateRoom(newPos, roomToGenerate);
+						GD.Print("GENERATE VAL: "+res);
+						lastDir = dir;
+						conn.size = getRoomSize(roomToGenerate);
+						conn.Position = newPos;
+    					QueuedRooms.Enqueue(conn);
+    					SpawnedRooms.Add(newPos);
+    					break;
 					}
 				}
 			}	
 		}
-	}
-
+	} 
 	public List<RoomNode> GenerateFloorGraph(int count)
 	{
     	var rooms = new List<RoomNode>();
@@ -98,8 +101,14 @@ public partial class Testing : Node
 
     	for(int i = 1; i < rooms.Count; i++)
     	{
-        	int randomIndex = rand.Next(0, i);
-        	ConnectFloorRooms(rooms[i], rooms[randomIndex]);
+			var chance = rand.Next(0,5);
+			if(chance == 4)
+			{
+				int randomIndex = rand.Next(0, i);
+				ConnectFloorRooms(rooms[i], rooms[randomIndex]);
+			}
+        	
+        	ConnectFloorRooms(rooms[i], rooms[i-1]);
     	}
 
    		return rooms;
@@ -153,9 +162,9 @@ public partial class Testing : Node
 			tileLayer.SetCell(cell+TilePos, tileId, tileAtlas, tileAlt);
 		}
 		GD.Print("Room generated at: " + TilePos);
+		GeneratedRoomCounter++;
 		return true;
 	}
-
 	public Vector2I getRoomSize(PackedScene roomScene)
 	{
 		Node2D room = (Node2D)roomScene.Instantiate();
@@ -180,7 +189,6 @@ public partial class Testing : Node
 			roomArray.Add(GD.Load<PackedScene>(folderString + fileName));
 		}
 	}
-
 	public void spawnProp(Godot.Vector2 pos, PackedScene propScene, Prop propData)
 	{
 		var worldPropNode = propScene.Instantiate();
@@ -189,7 +197,6 @@ public partial class Testing : Node
 		worldProp.GlobalPosition = new(200,200);
 		GetTree().CurrentScene.AddChild(worldProp);
 	}
-
 	public void spawnItem(Godot.Vector2 pos, PackedScene itemScene, Item itemData)
 	{
 		var worldItemNode = itemScene.Instantiate();
@@ -202,7 +209,32 @@ public partial class Testing : Node
 		worldItem.GlobalPosition = new (100, 100);
 		GetTree().CurrentScene.AddChild(worldItem);
 	}
+	public void SolidifyOutlines()
+	{
+		Vector2I[] directions =
+			{
+				Vector2I.Up,
+				Vector2I.Down,
+				Vector2I.Right,
+				Vector2I.Left,
+				new(1,1),
+				new(1,-1),
+				new(-1,1),
+				new(-1,-1),
+			};
+		foreach(var cell in tileLayer.GetUsedCells())
+		{
+			foreach(var dir in directions)
+			{
+				if (!IsCellOccupied(cell + dir))
+				{
+					tileLayer.SetCell(cell, 0, new(0,0), 0);
+				}
+			}
+		}
 
+		//DO UWYDAJNIENIA, HASHSETEM
+	}
 	public override void _Process(double delta)
 	{
 	}
