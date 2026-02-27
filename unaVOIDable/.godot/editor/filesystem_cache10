@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1772105211
+::res://::1772230873
 icon.svg::CompressedTexture2D::7234736451110295724::1769794710::1769794927::1::::<><><>0<>0<>d7ac0f4b75a4f77a004f8963a269e616<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://data_classes/::1771260675
 Item.cs::CSharpScript::703026592401022868::1769794710::0::1::::Item<>Resource<><>0<>0<><>::
@@ -41,7 +41,7 @@ SEQUENCE_CHAIN.tscn::PackedScene::2380798102686079098::1771502744::0::1::::<><><
 BEGIN.tscn::PackedScene::8591954314542653143::1772040249::0::1::::<><><>0<>0<><>::uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres
 ::res://scenes/test(main)/::1771921540
 Crate.tres::Resource/Prop::6340160098925685550::1769800570::0::1::::<><><>0<>0<><>::uid://crrrpq05bi10e::::res://data_classes/Prop.cs<>uid://84ppwekbdxqc::::res://scenes/test(main)/assets/Zrzut ekranu 2026-01-28 201912.png
-Testing.cs::CSharpScript::8297867015500305817::1772090862::0::1::::<>Node<><>0<>0<><>::
+Testing.cs::CSharpScript::8297867015500305817::1772116076::0::1::::<>Node<><>0<>0<><>::
 testing.gdshader::Shader::5702378104861423797::1769794712::0::1::::<><><>0<>0<><>::
 testing.tscn::PackedScene::5133828066630398848::1771921540::0::1::::<><><>0<>0<><>::uid://d13tyfxx8qh56::::res://scenes/entities/player/player.tscn<>uid://dqhswl758ppl6::::res://scenes/test(main)/Testing.cs<>uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres<>uid://cmsvehb3jbbqq::::res://scenes/HUD/hud.tscn
 TestItem.tres::Resource/Item::8907118741021267154::1769794712::0::1::::<><><>0<>0<><>::uid://kas0lr3jnutg::::res://data_classes/Item.cs<>uid://b7dh8s6eu0qm4::::res://scenes/test(main)/assets/ak12uptop.png<>uid://c1bdnrvxa1deo::::res://scenes/test(main)/assets/ak12onground.png

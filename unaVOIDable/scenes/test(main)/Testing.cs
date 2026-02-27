@@ -12,9 +12,11 @@ public partial class Testing : Node
 {	
 	TileMapLayer tileLayer;
 	Array<PackedScene> roomArray = [];
+	HashSet<Vector2I> usedCells = new();
 	Random rand = new();
 	PackedScene SEQUENCE_START;
 	int GeneratedRoomCounter = 0;
+	
 	public override void _Ready()
 	{
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
@@ -80,7 +82,7 @@ public partial class Testing : Node
 					if (!SpawnedRooms.Contains(newPos) && dir != lastDir)
 					{
     					var res = GenerateRoom(newPos, roomToGenerate);
-						GD.Print("GENERATE VAL: "+res);
+						//GD.Print("GENERATE VAL: "+res);
 						lastDir = dir;
 						conn.size = getRoomSize(roomToGenerate);
 						conn.Position = newPos;
@@ -147,7 +149,7 @@ public partial class Testing : Node
 		TileMapLayer roomTiles = (TileMapLayer)room.GetChild(0);
 		foreach(var cell in roomTiles.GetUsedCells())
 		{
-			if(tileLayer.GetUsedCells().Contains(cell+TilePos))
+			if(usedCells.Any(c => c == cell+TilePos))
 			{
 				GD.Print("SPACE TAKEN UP. STOPPING GENERATION.");
 				return false;
@@ -160,6 +162,7 @@ public partial class Testing : Node
 			Vector2I tileAtlas = roomTiles.GetCellAtlasCoords(cell);
 			var tileAlt = roomTiles.GetCellAlternativeTile(cell);
 			tileLayer.SetCell(cell+TilePos, tileId, tileAtlas, tileAlt);
+			usedCells.Add(cell);
 		}
 		GD.Print("Room generated at: " + TilePos);
 		GeneratedRoomCounter++;
