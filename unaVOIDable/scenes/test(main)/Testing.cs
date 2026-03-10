@@ -14,9 +14,8 @@ public partial class Testing : Node
 	Array<PackedScene> roomArray = [];
 	HashSet<Vector2I> usedCells = new();
 	Random rand = new();
-	PackedScene SEQUENCE_START;
+	PackedScene SEQUENCE_CHAIN;
 	int GeneratedRoomCounter = 0;
-	
 	public override void _Ready()
 	{
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
@@ -30,18 +29,13 @@ public partial class Testing : Node
 		spawnProp(new(10,10), packedScene, prop);
 
 		GeneratedRoomCounter = 0;
-		GenerateFloor(200);
-		GD.Print(GeneratedRoomCounter);
+		GenerateFloor(10000, 10, 10);
+		GD.Print(GeneratedRoomCounter);	
 		SolidifyOutlines();
-
 	}
-	public bool IsCellOccupied(Godot.Vector2I pos)
-	{
-		return tileLayer.GetCellSourceId(pos) != -1;	
-	}
-	public void GenerateFloor(int howMany)
+	public void GenerateFloor(int howMany, int BlockinessCoeff, int emptinessCoeff)
 	{	
-		var graph = GenerateFloorGraph(howMany);
+		var graph = GenerateFloorGraph(howMany, BlockinessCoeff);
 		RoomNode start = graph[0];
 		CalculateRoomDepths(start);
 		Queue<RoomNode> QueuedRooms = new();
@@ -54,7 +48,7 @@ public partial class Testing : Node
 			Vector2I.Left
 		};
 		start.Position = new(0,0);
-		GenerateRoom(start.Position, SEQUENCE_START);
+		GenerateRoom(start.Position, SEQUENCE_CHAIN);
 		SpawnedRooms.Add(start.Position);
 		QueuedRooms.Enqueue(start);
 		var lastDir = Vector2I.Down;
@@ -69,7 +63,12 @@ public partial class Testing : Node
 				
 				foreach(var dir in directions.OrderBy(x=>rand.Next())){
 					
+					var chance = rand.Next(0,emptinessCoeff+1);
 					var roomToGenerate = roomArray.PickRandom();
+					if(chance == emptinessCoeff)
+					{
+						roomToGenerate = SEQUENCE_CHAIN;
+					}
 					var newPos = currentRoom.Position;
 					var currentSize = currentRoom.size;
 					var toGenSize = getRoomSize(roomToGenerate);
@@ -79,7 +78,7 @@ public partial class Testing : Node
 					else
 						newPos.X += (currentSize.X/2 + toGenSize.X/2) * dir.X;
 						
-					if (!SpawnedRooms.Contains(newPos) && dir != lastDir)
+					if (!SpawnedRooms.Contains(newPos))
 					{
     					var res = GenerateRoom(newPos, roomToGenerate);
 						//GD.Print("GENERATE VAL: "+res);
@@ -94,8 +93,10 @@ public partial class Testing : Node
 			}	
 		}
 	} 
-	public List<RoomNode> GenerateFloorGraph(int count)
+	public List<RoomNode> GenerateFloorGraph(int count, int BlockinessCoeff)
 	{
+		//BlockinessCoeff is the chance to generate a connected room. The smaller it is - the more
+		//linear the level will be(but also less rooms will gen, this should be fixed)
     	var rooms = new List<RoomNode>();
 
     	for(int i = 0; i < count; i++)
@@ -103,13 +104,12 @@ public partial class Testing : Node
 
     	for(int i = 1; i < rooms.Count; i++)
     	{
-			var chance = rand.Next(0,5);
-			if(chance == 4)
+			var chance = rand.Next(0,BlockinessCoeff+1);
+			if(chance == BlockinessCoeff)
 			{
 				int randomIndex = rand.Next(0, i);
 				ConnectFloorRooms(rooms[i], rooms[randomIndex]);
 			}
-        	
         	ConnectFloorRooms(rooms[i], rooms[i-1]);
     	}
 
@@ -149,9 +149,9 @@ public partial class Testing : Node
 		TileMapLayer roomTiles = (TileMapLayer)room.GetChild(0);
 		foreach(var cell in roomTiles.GetUsedCells())
 		{
-			if(usedCells.Any(c => c == cell+TilePos))
+			if(usedCells.Contains(cell+TilePos))
 			{
-				GD.Print("SPACE TAKEN UP. STOPPING GENERATION.");
+				//GD.Print("SPACE TAKEN UP. STOPPING GENERATION.");
 				return false;
 			}
 		}
@@ -162,9 +162,9 @@ public partial class Testing : Node
 			Vector2I tileAtlas = roomTiles.GetCellAtlasCoords(cell);
 			var tileAlt = roomTiles.GetCellAlternativeTile(cell);
 			tileLayer.SetCell(cell+TilePos, tileId, tileAtlas, tileAlt);
-			usedCells.Add(cell);
+			usedCells.Add(cell+TilePos);
 		}
-		GD.Print("Room generated at: " + TilePos);
+		//GD.Print("Room generated at: " + TilePos);
 		GeneratedRoomCounter++;
 		return true;
 	}
@@ -172,12 +172,14 @@ public partial class Testing : Node
 	{
 		Node2D room = (Node2D)roomScene.Instantiate();
 		TileMapLayer roomTiles = (TileMapLayer)room.GetChild(0);
-		return roomTiles.GetUsedRect().Size;
+		var size = roomTiles.GetUsedRect().Size;
+		room.QueueFree();
+		return size;
 	}
 	public void LoadLevelRooms(int level)
 	{
 		string folderString = $"res://scenes/rooms/LVL{level}/";
-		SEQUENCE_START = GD.Load<PackedScene>(folderString + "BEGIN.tscn");
+		SEQUENCE_CHAIN = GD.Load<PackedScene>(folderString + "CHAIN.tscn");
 		foreach(var fileName in DirAccess.GetFilesAt(folderString))
 		{
 			switch (fileName.GetExtension())
@@ -225,18 +227,17 @@ public partial class Testing : Node
 				new(-1,1),
 				new(-1,-1),
 			};
-		foreach(var cell in tileLayer.GetUsedCells())
-		{
-			foreach(var dir in directions)
-			{
-				if (!IsCellOccupied(cell + dir))
-				{
-					tileLayer.SetCell(cell, 0, new(0,0), 0);
-				}
-			}
+		foreach (var cell in usedCells)
+    	{
+        	foreach (var dir in directions)
+        	{
+            	if (!usedCells.Contains(cell + dir))
+            	{
+                	tileLayer.SetCell(cell, 0, new(0, 0), 0);
+                	break;
+            	}
+        	}
 		}
-
-		//DO UWYDAJNIENIA, HASHSETEM
 	}
 	public override void _Process(double delta)
 	{

@@ -55,6 +55,16 @@ public partial class Player : CharacterBody2D
 		isRunning = Input.IsActionPressed("run");
 		isCrouched = Input.IsActionPressed("crouch");
 		slideHeld = Input.IsActionPressed("slide");
+		bool camToggle = Input.IsKeyPressed(Godot.Key.Z);
+
+		if (camToggle)
+		{
+			playerCam.Zoom = new((float)0.01,(float)0.01);
+		}
+		else
+		{
+			playerCam.Zoom = new((float)0.85,(float)0.85);
+		}
 
 		Vector2 mousePos = GetGlobalMousePosition();
 		Rotation = (GlobalPosition - mousePos).Angle();

@@ -52,8 +52,8 @@ limit_enabled = false
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 2.0
 blend_mode = 2
-range_item_cull_mask = 3
 shadow_enabled = true
+shadow_filter_smooth = 6.3
 shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_sglur")
 texture_scale = 30.11
