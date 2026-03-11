@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2q3r2a7y43ss"
-path="res://.godot/imported/Zrzut ekranu 2026-01-26 092037.png-2c05c5f265c493464cedaabbcd2c4579.ctex"
+uid="uid://84ppwekbdxqc"
+path="res://.godot/imported/Zrzut ekranu 2026-01-28 201912.png-9a6f141a38064c9edd76bea417637343.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/test(main)/assets/Zrzut ekranu 2026-01-26 092037.png"
-dest_files=["res://.godot/imported/Zrzut ekranu 2026-01-26 092037.png-2c05c5f265c493464cedaabbcd2c4579.ctex"]
+source_file="res://scenes/GAME(main)/assets/Zrzut ekranu 2026-01-28 201912.png"
+dest_files=["res://.godot/imported/Zrzut ekranu 2026-01-28 201912.png-9a6f141a38064c9edd76bea417637343.ctex"]
 
 [params]
 

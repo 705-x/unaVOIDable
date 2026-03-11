@@ -106,5 +106,6 @@ use={
 
 [rendering]
 
+2d/shadow_atlas/size=1024
 environment/defaults/default_clear_color=Color(0.08468992, 0.08468992, 0.08468992, 1)
 environment/stretch/mode="disabled"

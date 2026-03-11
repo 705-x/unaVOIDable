@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7dh8s6eu0qm4"
-path="res://.godot/imported/ak12uptop.png-a98bb46154f20bf8a4b27534c062b6c3.ctex"
+uid="uid://c1bdnrvxa1deo"
+path="res://.godot/imported/ak12onground.png-6969991aa26b7e775e1a67f9940ae2ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/test(main)/assets/ak12uptop.png"
-dest_files=["res://.godot/imported/ak12uptop.png-a98bb46154f20bf8a4b27534c062b6c3.ctex"]
+source_file="res://scenes/GAME(main)/assets/ak12onground.png"
+dest_files=["res://.godot/imported/ak12onground.png-6969991aa26b7e775e1a67f9940ae2ff.ctex"]
 
 [params]
 

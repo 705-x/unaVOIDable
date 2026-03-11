@@ -1,2 +1,5 @@
+PointLight2D
+Marker2D
+Node
 CanvasLayer
 TileMapLayer

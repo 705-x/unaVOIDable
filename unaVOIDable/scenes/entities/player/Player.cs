@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody2D
@@ -43,10 +44,13 @@ public partial class Player : CharacterBody2D
 	//--References/Inventory--//
 	public EquipmentInventory playerInventory;
 	private Camera2D playerCam;
+	private PointLight2D flashLight;
 
 	public override void _Ready()
 	{
     	playerCam = GetNode<Camera2D>("Camera");
+		flashLight = GetNode<PointLight2D>("PointLight2D");
+		flashLight.Position = this.Position;
 	}
 
 	public override void _Process(double delta)
