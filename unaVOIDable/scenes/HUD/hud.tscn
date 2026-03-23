@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cmsvehb3jbbqq"]
 
-[ext_resource type="Shader" uid="uid://cnijlmnyuqe2p" path="res://scenes/test(main)/testing.gdshader" id="1_glunx"]
+[ext_resource type="Shader" uid="uid://cnijlmnyuqe2p" path="res://scenes/GAME(main)/testing.gdshader" id="1_glunx"]
 [ext_resource type="Texture2D" uid="uid://cajn3tdkyey3g" path="res://scenes/common/assets/blood_splatter.png" id="2_glunx"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjobl"]
 shader = ExtResource("1_glunx")

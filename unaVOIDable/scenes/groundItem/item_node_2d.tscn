@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c35ohyhqqt1wa" path="res://scenes/groundItem/ItemNode2D.cs" id="1_2gyw0"]
 
 [node name="ItemNode2D" type="RigidBody2D"]
+z_index = 2
 collision_layer = 2
 gravity_scale = 0.0
 linear_damp = 5.0

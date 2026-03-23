@@ -9,6 +9,7 @@ angular_damp = 10.0
 script = ExtResource("1_tafab")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+z_index = 1
 
 [node name="LightOccluder" type="LightOccluder2D" parent="."]
 
