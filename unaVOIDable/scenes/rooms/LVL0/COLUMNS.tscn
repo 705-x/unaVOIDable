@@ -11,3 +11,25 @@ tile_set = ExtResource("1_of53i")
 [node name="LightMarkers" type="Node" parent="."]
 
 [node name="Marker2D" type="Marker2D" parent="LightMarkers"]
+
+[node name="PropMarkers" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="PropMarkers"]
+position = Vector2(-247, -259)
+
+[node name="Marker2D2" type="Marker2D" parent="PropMarkers"]
+position = Vector2(247, -249)
+
+[node name="Marker2D3" type="Marker2D" parent="PropMarkers"]
+position = Vector2(-249, 235)
+
+[node name="Marker2D4" type="Marker2D" parent="PropMarkers"]
+position = Vector2(233, 241)
+
+[node name="ItemMarkers" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="ItemMarkers"]
+position = Vector2(294, 206)
+
+[node name="Marker2D2" type="Marker2D" parent="ItemMarkers"]
+position = Vector2(-185, -251)

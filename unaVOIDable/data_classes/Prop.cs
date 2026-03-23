@@ -12,4 +12,6 @@ public partial class Prop : Resource
 	public float Mass;
 	[Export]
 	public bool Tall;
+	[Export]
+	public int spawnChance; //in promiles, chance to be spawned when it is picked at random. This works like shit. I think.
 }

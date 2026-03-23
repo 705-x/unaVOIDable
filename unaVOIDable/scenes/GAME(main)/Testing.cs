@@ -13,26 +13,29 @@ public partial class Testing : Node
 	HashSet<Vector2I> usedCells = new();
 	System.Collections.Generic.Dictionary<PackedScene, Vector2I> roomSizeCache = new();
 	LightManager lightManager;
+	WorldObjectManager objManager;
 	Random rand = new();
 	int GeneratedRoomCounter = 0;
 	public override void _Ready()
 	{
 		player = (Player)GetNode("Player");
-		lightManager = new(this);
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
+		lightManager = new(this, tileLayer);
+		objManager = new(this, tileLayer);
+		
 		LoadLevelRooms(0);
-
-		GeneratedRoomCounter = 0;
-		GenerateFloor(10000, 7, 2);
-		GD.Print(GeneratedRoomCounter);	
+		GenerateFloor(5000, 7, 2);
 		SolidifyOutlines();
-		lightManager.CreateLights(tileLayer);
+		GD.Print(GeneratedRoomCounter);	
+		lightManager.CreateLights();
+		objManager.loadObjects();
+		objManager.spawnWorldObjects();
 
 		var timer = new Timer();
     	timer.WaitTime = 0.5f;
     	timer.Autostart = true;
     	AddChild(timer);
-    	timer.Timeout += () => lightManager.UpdateNearPlayer((Vector2I)player.Position, 35, tileLayer);
+    	timer.Timeout += () => lightManager.UpdateNearPlayer((Vector2I)player.Position, 35);
 	}
 	public void GenerateFloor(int howMany, int blockinessCoeff, int emptinessCoeff)
 	{
@@ -200,6 +203,18 @@ public partial class Testing : Node
             	lightManager.lightPositions.Add(tileLayer.LocalToMap((Vector2I)marker.Position) + tilePos);
 
 		//this gets the Marker2Ds of each light and adds them to a Hashset.
+
+		markers = room.GetNodeOrNull("PropMarkers");
+    	if (markers != null)
+        	foreach (Node2D marker in markers.GetChildren())
+            	objManager.propMarkers.Add(tileLayer.LocalToMap((Vector2I)marker.Position) + tilePos);
+
+		markers = room.GetNodeOrNull("ItemMarkers");
+    	if (markers != null)
+        	foreach (Node2D marker in markers.GetChildren())
+            	objManager.itemMarkers.Add(tileLayer.LocalToMap((Vector2I)marker.Position) + tilePos);
+
+		//this gets the Marker2Ds of every prop spawn location and adds them to the ObjManager
 
 		room.QueueFree();
 		GeneratedRoomCounter++;

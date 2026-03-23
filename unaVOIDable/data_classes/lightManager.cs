@@ -10,14 +10,16 @@ public partial class LightManager : RefCounted
 {
 
     private Node parent;
+    private TileMapLayer tileLayer;
     private HashSet<PointLight2D> lights = new();
     public HashSet<Vector2I> lightPositions = new();
 
-    public LightManager(Node parent)
+    public LightManager(Node _parent, TileMapLayer _tileLayer)
     {
-        this.parent = parent;
+        parent = _parent;
+        tileLayer = _tileLayer;
     }
-    public void CreateLights(TileMapLayer tileLayer)
+    public void CreateLights()
     {
         foreach(Vector2I pos in lightPositions)
         {
@@ -26,10 +28,10 @@ public partial class LightManager : RefCounted
             light.Enabled = false;
             light.Texture = GD.Load<Texture2D>("res://scenes/common/assets/radiallight.tres"); 
             light.TextureScale = 36.0f;          
-            light.Energy = 1.8f;                
+            light.Energy = 1.5f;                
             light.Color = new Color(1, 1, 1);
 
-            // Shadow settings - biggest performance impact
+            // Shadow settings
             light.ShadowEnabled = true;
             light.ShadowFilter = PointLight2D.ShadowFilterEnum.None; // Cheapest filter
             light.ShadowFilterSmooth = 0f;                           // No smoothing cost
@@ -39,7 +41,7 @@ public partial class LightManager : RefCounted
             lights.Add(light);
         }
     }
-	public void UpdateNearPlayer(Vector2I playerPos, float radius, TileMapLayer tileLayer)
+	public void UpdateNearPlayer(Vector2I playerPos, float radius)
     {
         Vector2I playerWorld = tileLayer.LocalToMap(playerPos);
         foreach (var light in lights)

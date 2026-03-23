@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BACKROOMS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e9f3716bfb4f7fd7154f210ddea4ba23a59ced3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+052b054201d385f688ee330df1920aa0b36d662e")]
 [assembly: System.Reflection.AssemblyProductAttribute("BACKROOMS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BACKROOMS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

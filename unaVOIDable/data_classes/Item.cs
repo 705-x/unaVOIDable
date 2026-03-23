@@ -14,6 +14,8 @@ public partial class Item : Resource
 	public Texture2D textureHeld;
 	[Export]
 	public Texture2D texturePickUp;
+	[Export]
+	public int spawnChance; //in promiles
 
 	[Signal]
 	delegate void DroppedEventHandler(Item item);

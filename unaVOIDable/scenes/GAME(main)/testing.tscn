@@ -1,24 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfe4nskxkca8o"]
+[gd_scene format=3 uid="uid://cfe4nskxkca8o"]
 
 [ext_resource type="PackedScene" uid="uid://d13tyfxx8qh56" path="res://scenes/entities/player/player.tscn" id="1_ryjsw"]
 [ext_resource type="Script" uid="uid://dqhswl758ppl6" path="res://scenes/GAME(main)/Testing.cs" id="1_x7x36"]
 [ext_resource type="TileSet" uid="uid://btn1hjfnnadoo" path="res://scenes/common/assets/tilescenetes.tres" id="2_x7x36"]
 [ext_resource type="PackedScene" uid="uid://cmsvehb3jbbqq" path="res://scenes/HUD/hud.tscn" id="3_i85fu"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=369759239]
 script = ExtResource("1_x7x36")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=958219087]
 tile_set = ExtResource("2_x7x36")
 
-[node name="Fog" type="CanvasModulate" parent="."]
+[node name="Fog" type="CanvasModulate" parent="." unique_id=1642408917]
 light_mask = 2
 visibility_layer = 3
 use_parent_material = true
 color = Color(0.056291588, 0.056291603, 0.056291573, 1)
 
-[node name="Player" parent="." instance=ExtResource("1_ryjsw")]
+[node name="Player" parent="." unique_id=336779982 instance=ExtResource("1_ryjsw")]
 z_index = 5
 
-[node name="Hud" parent="." instance=ExtResource("3_i85fu")]
+[node name="Hud" parent="." unique_id=356615190 instance=ExtResource("3_i85fu")]
 layer = 2
