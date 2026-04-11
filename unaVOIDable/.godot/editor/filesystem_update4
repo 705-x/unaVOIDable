@@ -1,10 +1,11 @@
-res://data_classes/Prop.cs
-res://scenes/GAME(main)/Testing.cs
 res://scenes/entities/player/Player.cs
-res://data_classes/Item.cs
-res://scenes/GAME(main)/testing.tscn
+res://scenes/UI/equipmentSlots/ConsumableSlot.cs
+res://scenes/UI/equipmentSlots/SmallItemSlot.cs
+res://scenes/UI/equipmentSlots/LargeItemSlot.cs
+res://scenes/UI/HUD/Hud.cs
+res://scenes/GAME(main)/Testing.cs
+res://scenes/UI/equipmentSlots/largeItemSlot.tscn
 res://scenes/common/assets/radiallight.tres
 res://scenes/common/assets/tilescenetes.tres
 res://scenes/GAME(main)/testing.gdshader
-res://resources/props/Crate.tres
-res://resources/items/TestItem.tres
+res://scenes/entities/player/player.tscn

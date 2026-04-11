@@ -17,7 +17,7 @@ public partial class ItemNode2D : RigidBody2D
 		shape = GetNode<CollisionShape2D>("CollisionShape");
 		if (ItemData != null)
 		{
-			sprite.Texture = ItemData.texturePickUp;
+			sprite.Texture = ItemData.Icon;
 			
 			var rect = new RectangleShape2D
 			{
@@ -31,17 +31,6 @@ public partial class ItemNode2D : RigidBody2D
 	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
 	{
 		
-	}
-
-   	public void ApplyThrowImpulse(float angle, float force)
-	{
-		Vector2 direction = Vector2.Right.Rotated(angle);
-		LinearVelocity = direction * force;
-	}
-
-	internal void ApplyDropImpulse(float angle, float v)
-	{
-		throw new NotImplementedException();
 	}
 	
 	public void OnPickedUp(Item item)

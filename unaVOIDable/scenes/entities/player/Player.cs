@@ -1,21 +1,21 @@
 using Godot;
-using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Security.Cryptography.X509Certificates;
+
 
 public partial class Player : CharacterBody2D
 {
 
 
 	[Signal]
-	delegate void OpenedInventoryEventHandler();
+	public delegate void OpenedInventoryEventHandler();
 
 	[Signal]
-	delegate void ClosedInventoryEventHandler();
+	public delegate void ClosedInventoryEventHandler();
 
 	[Signal]
-	delegate void HealthChangedEventHandler(int newHealth);
+	public delegate void SelectedSlotEventHandler();
+
+	[Signal]
+	public delegate void HealthChangedEventHandler(int newHealth);
 
 
 	public enum slideState
@@ -33,6 +33,7 @@ public partial class Player : CharacterBody2D
 
 	//--Stats--//
 	private float hp = 100;
+	AnimatedSprite2D playerSprite = new();
 
 	//--Movement stats / Physics--//
 	public float Friction = 2500.0f;
@@ -41,47 +42,123 @@ public partial class Player : CharacterBody2D
 	public float PushStrength = 500.0f;
 	public bool isSliding = false;
 
+	//--Cooldowns and cooldown stats--//
+
+	private float slideCooldown = 2f; 
+	private float slideCooldownTimer = 0f;
+
 	//--References/Inventory--//
 	public EquipmentInventory playerInventory;
+	public AudioStreamPlayer2D playerSounds;
+	public WorldObjectManager worldObjectManager;
+	public TileMapLayer tileLayer;
 	private Camera2D playerCam;
 	private PointLight2D flashLight;
 
+	/*the player needs to know the WorldObjectManager and tileMapLayer in order to kinda connect those.
+	WorldObjectManager needs to have the position and angle at which to drop an item and having
+	the Inventory know those about the player just ruins the division of tasks between them, so
+	this goes here and Player will be like a relay between all this shit.
+	*/
 	public override void _Ready()
 	{
     	playerCam = GetNode<Camera2D>("Camera");
 		flashLight = GetNode<PointLight2D>("PointLight2D");
+		playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		playerSounds = GetNode<AudioStreamPlayer2D>("PlayerSounds");
+		playerInventory = new();
+		playerInventory.DropItem += OnDropItem;
 		flashLight.Position = this.Position;
 	}
-
 	public override void _Process(double delta)
 	{
 		movementInput = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		isRunning = Input.IsActionPressed("run");
 		isCrouched = Input.IsActionPressed("crouch");
 		slideHeld = Input.IsActionPressed("slide");
+		slidePressed = Input.IsActionJustPressed("slide");
 		bool camToggle = Input.IsKeyPressed(Godot.Key.Z);
+		if (Input.IsActionJustPressed("pickup"))
+		{
+    		var spaceState = GetWorld2D().DirectSpaceState;
+    		var query = new PhysicsPointQueryParameters2D
+    		{
+        		Position = GetGlobalMousePosition(),
+        		CollideWithAreas = true,
+    		};
+    		var results = spaceState.IntersectPoint(query);
 
-		if (camToggle)
+    		foreach (var hit in results)
+    		{
+				Node node = hit["collider"].As<Node>();
+
+        		if (node is ItemNode2D item)
+        		{
+
+					GD.Print("attemptedpickup");
+            		if (playerInventory.Equip(item.ItemData.equipmentType, item.ItemData))
+            		{
+                		item.QueueFree();
+            		}
+            	break;
+        		}
+    		}
+		}	
+		if (Input.IsActionJustPressed("drop"))
+		{
+			playerInventory.Drop(playerInventory.activeSlot.Key, playerInventory.activeSlot.Value);
+		}
+
+		if (Input.IsActionJustPressed("slot_large"))
+		{
+			playerInventory.activeSlot = new(EquipmentType.LargeItem, 0);
+			EmitSignal(SignalName.SelectedSlot);
+		}
+
+		if (Input.IsActionJustPressed("slot_small_1"))
+		{
+			playerInventory.activeSlot = new(EquipmentType.SmallItem, 0);
+			EmitSignal(SignalName.SelectedSlot);
+		}
+		if (Input.IsActionJustPressed("slot_small_2"))
+		{
+			playerInventory.activeSlot = new(EquipmentType.SmallItem, 1);
+			EmitSignal(SignalName.SelectedSlot);
+		}
+
+		if (Input.IsActionJustPressed("slot_consumable_1"))
+		{
+			playerInventory.activeSlot = new(EquipmentType.Consumable, 0);
+			EmitSignal(SignalName.SelectedSlot);
+		}
+
+		if (Input.IsActionJustPressed("slot_consumable_2"))
+		{
+			playerInventory.activeSlot = new(EquipmentType.Consumable, 1);
+			EmitSignal(SignalName.SelectedSlot);
+		}
+
+		//this is an ugly and downright tedious way to do this. I'll figure out how to do it better soon
+
+		
+
+		/*if (camToggle)
 		{
 			playerCam.Zoom = new((float)0.01,(float)0.01);
 		}
 		else
 		{
 			playerCam.Zoom = new((float)0.85,(float)0.85);
-		}
+		}*/
 
 		Vector2 mousePos = GetGlobalMousePosition();
-		Rotation = (GlobalPosition - mousePos).Angle();
-		Rotation -= Mathf.Pi/2;
+		GlobalRotation = (mousePos - GlobalPosition).Angle();
+		GlobalRotation -= Mathf.Pi/2;	
 		playerCam.GlobalPosition = (GlobalPosition * 0.8f+ mousePos * 0.2f);
-	}
 
-	public override void _Input(InputEvent @event)
-	{
-		if (@event.IsActionPressed("slide"))
-		slidePressed = true;
-	}
 
+		
+	}
 	public override void _PhysicsProcess(double delta)
 	{
 		
@@ -101,12 +178,20 @@ public partial class Player : CharacterBody2D
 			}
 		}
 	}
-
 	private void ResolveMovement(double delta)
 	{
 		float calcMaxSpeed = maxSpeed;
 		float calcAccel = Acceleration;
 		float calcFriction = Friction;
+		
+		//these three are just copied base stats for the sake of multiplying them without working on the base values. Wonky but i couldn't
+		//think of a better way.
+
+		if (slideCooldownTimer > 0f)
+		{
+    		slideCooldownTimer -= (float)delta; //decreases the cooldown with time
+		}
+
 		if (isRunning)
 		{
 			calcAccel *=2f;
@@ -122,9 +207,12 @@ public partial class Player : CharacterBody2D
 			if( Velocity.Length() < 400 || !slideHeld)
 			{
 				isSliding = false;
+				slideCooldownTimer = slideCooldown;
 			}
 			movementInput = Vector2.Zero;
 		}
+
+		//these Ifs modify the base values based on the player state, basically a really stupid way of changing max speed dependant on what the player is doing
 		
 		float frictionDelta = (float)delta * calcFriction;
 		if(movementInput != Vector2.Zero){
@@ -145,48 +233,45 @@ public partial class Player : CharacterBody2D
 			}
 		}
 
-		if (slidePressed)
+		//this is a mess. BUT IT WORKS
+
+		if (slidePressed && slideCooldownTimer <= 0f)
 		{
 			Velocity *= 1.5f;
 			isSliding = true;
 		}
+		
+		//pretty self explanatory
 
 	}
 	public void Damaged(int damage)
 	{
 		hp -= damage;
-		DrawDamage();
 		EmitSignal(SignalName.HealthChanged, hp);
 	}
 	public void Damaged(int damage, Vector2 force)
 	{
 		hp -= damage;
-		DrawDamage();
-		EmitSignal(SignalName.HealthChanged, hp);
 		Velocity += force;
+		EmitSignal(SignalName.HealthChanged, hp);
+
+		//thought it'd be funny if the player could be flung around by strong attacks.
 	}
-	public void DrawDamage()
+	public void OnDropItem(Item item)
 	{
-		Sprite2D bloodSprite = (Sprite2D)GetNode("../Hud/Control/Sprite2D");	
-		GD.Print(bloodSprite.SelfModulate);
-		var material = (ShaderMaterial)GetNode<ColorRect>("../Hud/ColorRect").Material;
+		Vector2 size = playerSprite.SpriteFrames.GetFrameTexture(playerSprite.Animation, playerSprite.Frame).GetSize();
+		Vector2 offset = new Vector2(0, size.Y*2);
+		offset = offset.Rotated(GlobalRotation);
 
-		material.SetShaderParameter("saturation", hp/100);
-		GD.Print(material.GetShaderParameter("saturation"));
-		bloodSprite.SelfModulate = bloodSprite.SelfModulate with {A = (100/hp)/100};
-	}
+		Vector2 pos = GlobalPosition + offset;	
+    	float force = 1000f;
 
-	public void DropItem(Item item, Vector2 position, float angle)
-	{
-		var scene = GD.Load<PackedScene>("res://scenes/ItemNode2d.tscn");
-		var worldItem = scene.Instantiate<ItemNode2D>();
-
-		worldItem.ItemData = item.Duplicate() as Item;
-		worldItem.GlobalPosition = position;
-
-		GetTree().CurrentScene.AddChild(worldItem);
-
-		worldItem.ApplyDropImpulse(angle, 300f);
+    	worldObjectManager.SpawnItem(
+        	tileLayer.LocalToMap(pos),
+        	item,
+        	GlobalRotation,
+        	force
+    	);
 	}
 
 }

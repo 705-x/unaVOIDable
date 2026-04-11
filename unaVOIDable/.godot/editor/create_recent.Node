@@ -1,3 +1,8 @@
+AudioStreamPlayer2D
+TextureRect
+Panel
+Control
+Sprite2D
 Marker2D
 Node
 PointLight2D

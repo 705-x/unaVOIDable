@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://dy5w7dvqrydfm"]
+
+[ext_resource type="Texture2D" uid="uid://c1bdnrvxa1deo" path="res://scenes/GAME(main)/assets/ak12onground.png" id="1_elusj"]
+[ext_resource type="Script" uid="uid://kas0lr3jnutg" path="res://data_classes/Item.cs" id="2_dkmrx"]
+[ext_resource type="Texture2D" uid="uid://b7dh8s6eu0qm4" path="res://scenes/GAME(main)/assets/ak12uptop.png" id="3_7nc37"]
+
+[resource]
+script = ExtResource("2_dkmrx")
+textureHeld = ExtResource("3_7nc37")
+Icon = ExtResource("1_elusj")
+equipmentType = 3
+spawnChance = 100
+metadata/_custom_type_script = "uid://kas0lr3jnutg"
