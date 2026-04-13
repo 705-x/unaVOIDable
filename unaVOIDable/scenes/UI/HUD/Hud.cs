@@ -6,6 +6,8 @@ public partial class Hud : CanvasLayer
 {
 
 	Sprite2D bloodSprite;	
+	TextureProgressBar healthBar;
+	TextureProgressBar staminaBar;
 	ShaderMaterial material;
 	Player player;
 	EquipmentInventory playerInventory;
@@ -17,13 +19,16 @@ public partial class Hud : CanvasLayer
 		bloodSprite = (Sprite2D)GetNode("Control/Sprite2D");
 		player = GetNode<Player>("../Player");
 		playerInventory = player.playerInventory;
+		healthBar = GetNode<TextureProgressBar>("HealthBar");
+		staminaBar = GetNode<TextureProgressBar>("StaminaBar");
 
-		player.HealthChanged += DrawDamage;
+		player.StaminaChanged += DrawStamina;
+		player.HealthChanged += DrawHealth;
 		player.SelectedSlot += DrawHUD;
 		playerInventory.InventoryChanged += DrawInventory;
 		playerInventory.InventoryChanged += DrawHUD;
 
-
+	
 		foreach (Control slotNode in GetNode("EquippedItems").GetChildren())
 		{
 			var type = (EquipmentType)Enum.Parse(typeof(EquipmentType), slotNode.Name, true);
@@ -58,41 +63,48 @@ public partial class Hud : CanvasLayer
         	
 			var controls = uiSlots[type];
 
-        	for (int i = 0; i < controls.Count; i++)
-        	{
-				if (kvp.Key == playerInventory.activeSlot.Key 
-    				&& i == playerInventory.activeSlot.Value
-    				&& i < kvp.Value.Count)
-				{
-    				controls[i].SelfModulate = new(255,255,255, 0.2f);
-    				GD.Print(kvp.Key, kvp.Value[i]);
-				}
-				else 
-				{
-					controls[i].SelfModulate = new(100,100,100, 0.2f);
-				}
-            	var icon = controls[i].GetNode<TextureRect>("Icon");
+        	bool isActiveType = kvp.Key == playerInventory.activeSlot.Key;
+			int activeIndex = playerInventory.activeSlot.Value;
 
-            	if (i < items.Count)
-            	{
-                	icon.Texture = items[i].Icon;
-                	icon.Visible = true;
-					
-            	}
-            	else
-            	{
+			for (int i = 0; i < controls.Count; i++)
+			{
+    			bool isActiveSlot = isActiveType && i == activeIndex;
+
+    			if(isActiveSlot)
+				{
+        			controls[i].SelfModulate = new Color(1, 1, 1, 0.4f);
+				}else{
+        			controls[i].SelfModulate = new Color(0.4f, 0.4f, 0.4f, 0.1f);
+				}
+
+    			var icon = controls[i].GetNode<TextureRect>("Icon");
+
+				if (i < items.Count)
+				{
+					icon.Texture = items[i].Icon;
+					icon.Visible = true;
+				}
+				else
+				{
 					icon.Texture = null;
-                	icon.Visible = false;
-            	}
+					icon.Visible = false;
+				}
         	}
 		}
 
-		//this draws ever
+		//this draws every slot, dirty rewrite but it works so idgaf
+
 	}
-	public void DrawDamage(int hp)
+	public void DrawHealth(int hp)
 	{
+		healthBar.Value = hp;
 		material.SetShaderParameter("saturation", hp/100.0f);
 		float alpha = 0.5f - (hp / 100.0f);
 		bloodSprite.SelfModulate = bloodSprite.SelfModulate with { A = alpha };
+	}
+
+	public void DrawStamina(float stamina)
+	{
+		staminaBar.Value = stamina;
 	}
 }

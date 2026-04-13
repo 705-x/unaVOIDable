@@ -27,12 +27,12 @@ public partial class LightManager : RefCounted
             light.Position = tileLayer.MapToLocal(pos);
             light.Enabled = false;
             light.Texture = GD.Load<Texture2D>("res://scenes/common/assets/radiallight.tres"); 
-            light.TextureScale = 36.0f;          
+            light.TextureScale = 24.0f;          
             light.Energy = 1.5f;                
             light.Color = new Color(1, 1, 1);
 
             // Shadow settings
-            light.ShadowEnabled = true;
+            light.ShadowEnabled = false;
             light.ShadowFilter = PointLight2D.ShadowFilterEnum.None; // Cheapest filter
             light.ShadowFilterSmooth = 0f;                           // No smoothing cost
 
