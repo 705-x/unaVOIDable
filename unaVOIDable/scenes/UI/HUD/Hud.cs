@@ -19,16 +19,13 @@ public partial class Hud : CanvasLayer
 		bloodSprite = (Sprite2D)GetNode("Control/Sprite2D");
 		player = GetNode<Player>("../Player");
 		playerInventory = player.playerInventory;
-		healthBar = GetNode<TextureProgressBar>("HealthBar");
-		staminaBar = GetNode<TextureProgressBar>("StaminaBar");
 
-		player.StaminaChanged += DrawStamina;
-		player.HealthChanged += DrawHealth;
+		player.HealthChanged += DrawDamage;
 		player.SelectedSlot += DrawHUD;
 		playerInventory.InventoryChanged += DrawInventory;
 		playerInventory.InventoryChanged += DrawHUD;
 
-	
+
 		foreach (Control slotNode in GetNode("EquippedItems").GetChildren())
 		{
 			var type = (EquipmentType)Enum.Parse(typeof(EquipmentType), slotNode.Name, true);
@@ -92,19 +89,12 @@ public partial class Hud : CanvasLayer
         	}
 		}
 
-		//this draws every slot, dirty rewrite but it works so idgaf
-
+		//this draws slots and each selected slot
 	}
-	public void DrawHealth(int hp)
+	public void DrawDamage(int hp)
 	{
-		healthBar.Value = hp;
 		material.SetShaderParameter("saturation", hp/100.0f);
 		float alpha = 0.5f - (hp / 100.0f);
 		bloodSprite.SelfModulate = bloodSprite.SelfModulate with { A = alpha };
-	}
-
-	public void DrawStamina(float stamina)
-	{
-		staminaBar.Value = stamina;
 	}
 }
