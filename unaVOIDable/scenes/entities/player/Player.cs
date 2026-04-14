@@ -181,12 +181,16 @@
 			}
 
 			if (activeItem == null)
-				{
-					itemSprite.Visible = false;
-				}
+			{
+				itemSprite.Visible = false;
+			}
+			else
+			{
+				itemSprite.Visible = true;
+				itemSprite.SpriteFrames = activeItem.useAnimation;
+			}
 
-			itemSprite.Visible = true;
-			itemSprite.SpriteFrames = activeItem.useAnimation;
+			
 
 			if (Input.IsActionJustPressed("primary_action"))
 			{
