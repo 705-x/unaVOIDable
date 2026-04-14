@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d4gptrl6u1q4j"]
+
+[ext_resource type="Script" uid="uid://bhx5qp003ldd4" path="res://scenes/UI/equipmentSlots/LargeItemSlot.cs" id="1_1otei"]
+
+[node name="LargeItemSlot" type="Panel" unique_id=1162151111]
+anchors_preset = -1
+anchor_right = 0.156
+anchor_bottom = 0.13900001
+offset_right = 0.47998047
+offset_bottom = -0.120010376
+script = ExtResource("1_1otei")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1587206722]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 6

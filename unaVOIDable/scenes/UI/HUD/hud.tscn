@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://cmsvehb3jbbqq"]
+
+[ext_resource type="Shader" uid="uid://cnijlmnyuqe2p" path="res://scenes/GAME(main)/testing.gdshader" id="1_glunx"]
+[ext_resource type="Script" uid="uid://0epql0axv5j7" path="res://scenes/UI/HUD/Hud.cs" id="1_yxc1e"]
+[ext_resource type="Texture2D" uid="uid://cajn3tdkyey3g" path="res://scenes/common/assets/blood_splatter.png" id="2_glunx"]
+[ext_resource type="PackedScene" uid="uid://d4gptrl6u1q4j" path="res://scenes/UI/equipmentSlots/largeItemSlot.tscn" id="4_uvw8l"]
+[ext_resource type="PackedScene" uid="uid://cd47bwnjk6fct" path="res://scenes/UI/equipmentSlots/smallItemSlot.tscn" id="5_ey3wo"]
+[ext_resource type="PackedScene" uid="uid://c2dkj0pkjnprl" path="res://scenes/UI/equipmentSlots/consumableSlot.tscn" id="6_60fop"]
+[ext_resource type="Texture2D" uid="uid://dtk4272m2wt70" path="res://scenes/UI/HUD/src/Bez tytułu.png" id="7_ey3wo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjobl"]
+shader = ExtResource("1_glunx")
+shader_parameter/saturation = 1.0
+
+[node name="Hud" type="CanvasLayer" unique_id=1671669819]
+layer = 5
+script = ExtResource("1_yxc1e")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=447276320]
+material = SubResource("ShaderMaterial_jjobl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="." unique_id=1223895655]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control" unique_id=276233710]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(960, 540)
+texture = ExtResource("2_glunx")
+
+[node name="EquippedItems" type="Control" parent="." unique_id=413530269]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 777.0
+offset_right = 615.0
+offset_bottom = 1080.0
+
+[node name="LargeItem" parent="EquippedItems" unique_id=1162151111 instance=ExtResource("4_uvw8l")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 152.0
+offset_right = 452.0
+offset_bottom = 150.0
+rotation = 1.5707964
+
+[node name="SmallItem" parent="EquippedItems" unique_id=1472039490 instance=ExtResource("5_ey3wo")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 304.0
+offset_top = 100.803955
+offset_right = 504.0
+offset_bottom = 250.80396
+rotation = 1.5707964
+
+[node name="smallItem" parent="EquippedItems" unique_id=1973922363 instance=ExtResource("5_ey3wo")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 456.0
+offset_top = 100.0
+offset_right = 656.0
+offset_bottom = 250.0
+rotation = 1.5707964
+
+[node name="Consumable" parent="EquippedItems" unique_id=1943035642 instance=ExtResource("6_60fop")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 154.0
+offset_top = -1.0
+offset_right = 254.0
+offset_bottom = 99.0
+
+[node name="consumable" parent="EquippedItems" unique_id=1412526265 instance=ExtResource("6_60fop")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 257.0
+offset_top = -1.0
+offset_right = 357.0
+offset_bottom = 99.0
+
+[node name="StaminaBar" type="TextureProgressBar" parent="." unique_id=1669354635]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+fill_mode = 6
+texture_progress = ExtResource("7_ey3wo")
+tint_progress = Color(1, 1, 1, 0.03529412)

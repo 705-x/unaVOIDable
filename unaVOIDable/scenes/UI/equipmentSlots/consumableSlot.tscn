@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c2dkj0pkjnprl"]
+
+[ext_resource type="Script" uid="uid://bbblskj4jbr5t" path="res://scenes/UI/equipmentSlots/ConsumableSlot.cs" id="1_3iblw"]
+
+[node name="ConsumableSlot" type="Panel" unique_id=1943035642]
+anchors_preset = -1
+anchor_right = 0.052
+anchor_bottom = 0.093
+offset_right = 0.15999603
+offset_bottom = -0.44000244
+script = ExtResource("1_3iblw")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1831895526]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 6

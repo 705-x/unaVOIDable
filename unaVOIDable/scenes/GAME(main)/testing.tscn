@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d13tyfxx8qh56" path="res://scenes/entities/player/player.tscn" id="1_ryjsw"]
 [ext_resource type="Script" uid="uid://dqhswl758ppl6" path="res://scenes/GAME(main)/Testing.cs" id="1_x7x36"]
 [ext_resource type="TileSet" uid="uid://btn1hjfnnadoo" path="res://scenes/common/assets/tilescenetes.tres" id="2_x7x36"]
-[ext_resource type="PackedScene" uid="uid://cmsvehb3jbbqq" path="res://scenes/HUD/hud.tscn" id="3_i85fu"]
+[ext_resource type="PackedScene" uid="uid://cmsvehb3jbbqq" path="res://scenes/UI/HUD/hud.tscn" id="3_i85fu"]
 
 [node name="Main" type="Node" unique_id=369759239]
 script = ExtResource("1_x7x36")

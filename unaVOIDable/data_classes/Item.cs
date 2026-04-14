@@ -1,9 +1,23 @@
 using Godot;
 using System;
 
+public enum EquipmentType
+{
+	HeadGear,
+    Armor,
+    Backpack,
+    LargeItem,
+    SmallItem,
+    Consumable
+}
+
+//Enum to determine in which slot the item should be equipped. It's used in EquipmentInventory. I don't see an item being un-equippable
+//in one of those categories.
+
 [GlobalClass]
 public partial class Item : Resource
 {
+		
 	[Export]
 	Vector2 worldSize;
 	[Export]
@@ -11,11 +25,16 @@ public partial class Item : Resource
 	[Export]
 	Vector2 holdingPoint; 
 	[Export]
-	public Texture2D textureHeld;
+	public SpriteFrames useAnimation;
 	[Export]
-	public Texture2D texturePickUp;
+	public SpriteFrames refillAnimation;
+	[Export]
+	public Texture2D Icon;
+	[Export]
+	public EquipmentType equipmentType;
 	[Export]
 	public int spawnChance; //in promiles
+
 
 	[Signal]
 	delegate void DroppedEventHandler(Item item);
@@ -23,15 +42,19 @@ public partial class Item : Resource
 	delegate void PickedUpEventHandler(Item item);
 
 
-	public void Use()
+	public virtual void Use()
 	{
-		throw new NotImplementedException();
+		GD.Print("Basic, not overloaded use");
 	}
 
-	public void SecondaryUse()
+	public virtual void SecondaryUse()
 	{
-		throw new NotImplementedException();
+		GD.Print("Basic, not overloaded secondary use");
 	}
 	
+	public virtual void Refill()
+	{
+		GD.Print("Basic, not overloaded refill (reload for weapons)");
+	}
 
 }

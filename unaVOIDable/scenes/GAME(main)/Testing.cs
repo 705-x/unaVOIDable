@@ -18,10 +18,15 @@ public partial class Testing : Node
 	int GeneratedRoomCounter = 0;
 	public override void _Ready()
 	{
-		player = (Player)GetNode("Player");
+		
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
 		lightManager = new(this, tileLayer);
 		objManager = new(this, tileLayer);
+
+		player = (Player)GetNode("Player");
+		player.worldObjectManager = objManager;
+		player.tileLayer = tileLayer;
+		//shi passed to player by reference
 		
 		LoadLevelRooms(0);
 		GenerateFloor(5000, 7, 2);
@@ -36,6 +41,8 @@ public partial class Testing : Node
     	timer.Autostart = true;
     	AddChild(timer);
     	timer.Timeout += () => lightManager.UpdateNearPlayer((Vector2I)player.Position, 35);
+
+		
 	}
 	public void GenerateFloor(int howMany, int blockinessCoeff, int emptinessCoeff)
 	{

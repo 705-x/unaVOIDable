@@ -1,5 +1,5 @@
-Marker2D
-Node
-PointLight2D
-CanvasLayer
-TileMapLayer
+AnimatedSprite2D
+Sprite2D
+ProgressBar
+Label
+TextureProgressBar

@@ -25,6 +25,7 @@ public partial class WorldObjectManager : RefCounted
     {
         parent = _parent;
         tileLayer = _tileLayer;
+        
     }
     
     public void spawnWorldObjects()
@@ -98,5 +99,26 @@ public partial class WorldObjectManager : RefCounted
         worldItem.ItemData = itemData.Duplicate() as Item;
         worldItem.GlobalPosition = tileLayer.MapToLocal(pos);
         parent.AddChild(worldItem);
+    }
+
+    async public void SpawnItem(Vector2I pos, Item itemData, float angle, float force)
+    {
+        var worldItemNode = itemScene.Instantiate();
+        if (worldItemNode is not ItemNode2D worldItem)
+        {
+            GD.PrintErr("cannot cast root to RigidBody2D");
+            return;
+        }
+        worldItem.ItemData = itemData.Duplicate() as Item;
+        parent.AddChild(worldItem);
+
+        worldItem.GlobalPosition = tileLayer.MapToLocal(pos);
+        Vector2 direction = Vector2.Down.Rotated(angle);
+
+        await worldItem.GetTree().ToSignal(worldItem.GetTree(), "physics_frame");
+        worldItem.LockRotation = false;
+        worldItem.ApplyCentralImpulse(direction * force);
+        worldItem.AngularVelocity = force/10;
+        //these apply the position and impulse changes AFTER the item is spawned to avoid unreliable behaviors.
     }
 }
