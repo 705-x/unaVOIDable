@@ -66,14 +66,32 @@
             //casting the enum to int. Can be converted back by casting the int into the enum type
 
             item.RemoveAt(which);
+            if (activeSlot.Key == slot)
+            {
+                if (item.Count == 0)
+                {
+                    activeSlot = default;
+                }
+                else if (activeSlot.Value >= item.Count)
+                {
+                    activeSlot = new(slot, item.Count - 1);
+                }
+            }
+            //sets the active slot properly so it works
             EmitSignal(SignalName.InventoryChanged);
             return true;
-
-            //to implement this is js a placeholder
         }
 
         public Item getActiveItem()
         {
-            return slots[activeSlot.Key][activeSlot.Value];
+            if (!slots.ContainsKey(activeSlot.Key))
+                return null;
+
+            var list = slots[activeSlot.Key];
+
+            if (activeSlot.Value < 0 || activeSlot.Value >= list.Count)
+                return null;
+
+            return list[activeSlot.Value];
         }
     }

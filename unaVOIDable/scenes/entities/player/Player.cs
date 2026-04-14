@@ -3,8 +3,6 @@
 
 	public partial class Player : CharacterBody2D
 	{
-
-
 		[Signal]
 		public delegate void OpenedInventoryEventHandler();
 
@@ -151,27 +149,76 @@
 			{
 				playerInventory.activeSlot = new(EquipmentType.LargeItem, 0);
 				EmitSignal(SignalName.SelectedSlot);
-				itemSprite.SpriteFrames = playerInventory.getActiveItem().useAnimation;
+				var item = playerInventory.getActiveItem();
+
+				if (item == null)
+				{
+					itemSprite.Visible = false; 
+					return;
+				}
+
+				itemSprite.Visible = true;
+				itemSprite.SpriteFrames = item.useAnimation;
 			}
 			if (Input.IsActionJustPressed("slot_small_1"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.SmallItem, 0);
 				EmitSignal(SignalName.SelectedSlot);
+				var item = playerInventory.getActiveItem();
+
+				if (item == null)
+				{
+					itemSprite.Visible = false; 
+					return;
+				}
+
+				itemSprite.Visible = true;
+				itemSprite.SpriteFrames = item.useAnimation;
 			}
 			if (Input.IsActionJustPressed("slot_small_2"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.SmallItem, 1);
 				EmitSignal(SignalName.SelectedSlot);
+				var item = playerInventory.getActiveItem();
+
+				if (item == null)
+				{
+					itemSprite.Visible = false; 
+					return;
+				}
+
+				itemSprite.Visible = true;
+				itemSprite.SpriteFrames = item.useAnimation;
 			}
 			if (Input.IsActionJustPressed("slot_consumable_1"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.Consumable, 0);
 				EmitSignal(SignalName.SelectedSlot);
+				var item = playerInventory.getActiveItem();
+
+				if (item == null)
+				{
+					itemSprite.Visible = false; 
+					return;
+				}
+
+				itemSprite.Visible = true;
+				itemSprite.SpriteFrames = item.useAnimation;
 			}
-			if (Input.IsActionJustPressed("slot_consumable_2"))
+			if (Input.IsActionJustPressed("slot_consumable_2"))	
 			{
 				playerInventory.activeSlot = new(EquipmentType.Consumable, 1);
 				EmitSignal(SignalName.SelectedSlot);
+				var item = playerInventory.getActiveItem();
+
+				if (item == null)
+				{
+					itemSprite.Visible = false;
+					return;
+				}
+
+				itemSprite.Visible = true;
+				itemSprite.SpriteFrames = item.useAnimation;
 			}
 
 			//this is an ugly and downright tedious way to do this. I'll figure out how to do it better soon
@@ -191,8 +238,6 @@
 			GlobalRotation = (mousePos - GlobalPosition).Angle();
 			GlobalRotation -= Mathf.Pi/2;	
 			playerCam.GlobalPosition = (GlobalPosition * 0.8f+ mousePos * 0.2f);
-
-			
 			
 		}
 		public override void _PhysicsProcess(double delta)

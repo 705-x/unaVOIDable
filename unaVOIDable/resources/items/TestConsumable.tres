@@ -1,12 +1,10 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://c07vu8wgayhbo"]
 
 [ext_resource type="Texture2D" uid="uid://h8n6dsotct5d" path="res://scenes/GAME(main)/assets/ammoequipped.png" id="1_ghpmw"]
-[ext_resource type="Script" uid="uid://kas0lr3jnutg" path="res://data_classes/Item.cs" id="2_nn05i"]
-[ext_resource type="Texture2D" uid="uid://b7dh8s6eu0qm4" path="res://scenes/GAME(main)/assets/ak12uptop.png" id="3_fnp4j"]
+[ext_resource type="Script" path="res://data_classes/Item.cs" id="2_nn05i"]
 
 [resource]
 script = ExtResource("2_nn05i")
-textureHeld = ExtResource("3_fnp4j")
 Icon = ExtResource("1_ghpmw")
 equipmentType = 5
 spawnChance = 100
