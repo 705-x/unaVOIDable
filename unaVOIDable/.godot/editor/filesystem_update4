@@ -14,3 +14,6 @@ res://scenes/groundItem/ItemNode2D.cs
 res://resources/items/TestConsumable.tres
 res://resources/items/TestLargeItem.tres
 res://data_classes/Item.cs
+res://scenes/UI/equipmentSlots/consumableSlot.tscn
+res://scenes/UI/equipmentSlots/largeItemSlot.tscn
+res://scenes/UI/equipmentSlots/smallItemSlot.tscn

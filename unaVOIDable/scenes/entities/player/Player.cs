@@ -183,7 +183,6 @@
 			if (activeItem == null)
 				{
 					itemSprite.Visible = false;
-					return;
 				}
 
 			itemSprite.Visible = true;
