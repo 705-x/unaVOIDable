@@ -97,7 +97,8 @@
 			isCrouched = Input.IsActionPressed("crouch");
 			slideHeld = Input.IsActionPressed("slide");
 			slidePressed = Input.IsActionJustPressed("slide");
-
+			var activeItem = playerInventory.getActiveItem();
+			
 			if (Input.IsActionJustPressed("pickup"))
 			{
 				var spaceState = GetWorld2D().DirectSpaceState;
@@ -149,81 +150,60 @@
 			{
 				playerInventory.activeSlot = new(EquipmentType.LargeItem, 0);
 				EmitSignal(SignalName.SelectedSlot);
-				var item = playerInventory.getActiveItem();
 
-				if (item == null)
-				{
-					itemSprite.Visible = false; 
-					return;
-				}
-
-				itemSprite.Visible = true;
-				itemSprite.SpriteFrames = item.useAnimation;
+				
 			}
 			if (Input.IsActionJustPressed("slot_small_1"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.SmallItem, 0);
 				EmitSignal(SignalName.SelectedSlot);
-				var item = playerInventory.getActiveItem();
 
-				if (item == null)
-				{
-					itemSprite.Visible = false; 
-					return;
-				}
-
-				itemSprite.Visible = true;
-				itemSprite.SpriteFrames = item.useAnimation;
+				
 			}
 			if (Input.IsActionJustPressed("slot_small_2"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.SmallItem, 1);
 				EmitSignal(SignalName.SelectedSlot);
-				var item = playerInventory.getActiveItem();
 
-				if (item == null)
-				{
-					itemSprite.Visible = false; 
-					return;
-				}
-
-				itemSprite.Visible = true;
-				itemSprite.SpriteFrames = item.useAnimation;
+				
 			}
 			if (Input.IsActionJustPressed("slot_consumable_1"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.Consumable, 0);
 				EmitSignal(SignalName.SelectedSlot);
-				var item = playerInventory.getActiveItem();
 
-				if (item == null)
-				{
-					itemSprite.Visible = false; 
-					return;
-				}
-
-				itemSprite.Visible = true;
-				itemSprite.SpriteFrames = item.useAnimation;
+				
 			}
 			if (Input.IsActionJustPressed("slot_consumable_2"))	
 			{
 				playerInventory.activeSlot = new(EquipmentType.Consumable, 1);
 				EmitSignal(SignalName.SelectedSlot);
-				var item = playerInventory.getActiveItem();
+			}
 
-				if (item == null)
+			if (activeItem == null)
 				{
 					itemSprite.Visible = false;
 					return;
 				}
 
-				itemSprite.Visible = true;
-				itemSprite.SpriteFrames = item.useAnimation;
-			}
+			itemSprite.Visible = true;
+			itemSprite.SpriteFrames = activeItem.useAnimation;
 
+			if (Input.IsActionJustPressed("primary_action"))
+			{
+				activeItem.Use();
+			}
+			if (Input.IsActionJustPressed("secondary_action"))
+			{
+				activeItem.SecondaryUse();
+			}
+			if (Input.IsActionJustPressed("refill"))
+			{
+				activeItem.Refill();
+			}
 			//this is an ugly and downright tedious way to do this. I'll figure out how to do it better soon
 
-			
+			//i added some more shi, absolute if hell XDDD but idgaf i don't have much time
 
 			/*if (camToggle)
 			{
