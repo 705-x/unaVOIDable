@@ -17,10 +17,11 @@ public partial class Hud : CanvasLayer
 	{
 		material = (ShaderMaterial)GetNode<ColorRect>("ColorRect").Material;
 		bloodSprite = (Sprite2D)GetNode("Control/Sprite2D");
+		staminaBar = GetNode<TextureProgressBar>("StaminaBar");
 		player = GetNode<Player>("../Player");
 		playerInventory = player.playerInventory;
-
 		player.HealthChanged += DrawDamage;
+		player.StaminaChanged += DrawStamina;
 		player.SelectedSlot += DrawHUD;
 		playerInventory.InventoryChanged += DrawInventory;
 		playerInventory.InventoryChanged += DrawHUD;
@@ -40,6 +41,8 @@ public partial class Hud : CanvasLayer
 			}
 			uiSlots[type].Add(slotNode);
 		}
+
+		DrawHUD();
 	}
 	public override void _Process(double delta)
 	{
@@ -96,5 +99,10 @@ public partial class Hud : CanvasLayer
 		material.SetShaderParameter("saturation", hp/100.0f);
 		float alpha = 0.5f - (hp / 100.0f);
 		bloodSprite.SelfModulate = bloodSprite.SelfModulate with { A = alpha };
+	}
+
+	public void DrawStamina(float stamina)
+	{
+		staminaBar.Value = stamina;
 	}
 }

@@ -32,8 +32,9 @@ scale = Vector2(2.155, 2.155)
 sprite_frames = SubResource("SpriteFrames_symyc")
 
 [node name="HandPivot" type="Node2D" parent="." unique_id=1402223882]
+position = Vector2(23.635, 21.38)
 
-[node name="itemsprite(INSTANCE)" type="AnimatedSprite2D" parent="HandPivot" unique_id=1374330235]
+[node name="itemsprite" type="AnimatedSprite2D" parent="HandPivot" unique_id=1971562052]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1763597219]
 limit_enabled = false
@@ -48,5 +49,5 @@ texture_scale = 10.0
 
 [node name="PlayerSounds" type="AudioStreamPlayer2D" parent="." unique_id=920564256]
 stream = ExtResource("4_nh4ur")
-volume_db = 9.948
+volume_db = 24.0
 parameters/looping = true

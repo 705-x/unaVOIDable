@@ -6,8 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d4gptrl6u1q4j" path="res://scenes/UI/equipmentSlots/largeItemSlot.tscn" id="4_uvw8l"]
 [ext_resource type="PackedScene" uid="uid://cd47bwnjk6fct" path="res://scenes/UI/equipmentSlots/smallItemSlot.tscn" id="5_ey3wo"]
 [ext_resource type="PackedScene" uid="uid://c2dkj0pkjnprl" path="res://scenes/UI/equipmentSlots/consumableSlot.tscn" id="6_60fop"]
-[ext_resource type="Texture2D" uid="uid://c0fvwe83sj5km" path="res://scenes/UI/HUD/src/underbar.png" id="7_60fop"]
-[ext_resource type="Texture2D" uid="uid://cqghx0aa33uii" path="res://scenes/UI/HUD/src/overbar.png" id="8_1vsvy"]
+[ext_resource type="Texture2D" uid="uid://dtk4272m2wt70" path="res://scenes/UI/HUD/src/Bez tytułu.png" id="7_ey3wo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjobl"]
 shader = ExtResource("1_glunx")
@@ -61,9 +60,9 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 304.0
-offset_top = 98.0
-offset_right = 506.0
-offset_bottom = 248.0
+offset_top = 100.803955
+offset_right = 504.0
+offset_bottom = 250.80396
 rotation = 1.5707964
 
 [node name="smallItem" parent="EquippedItems" unique_id=1973922363 instance=ExtResource("5_ey3wo")]
@@ -71,9 +70,9 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 457.0
+offset_left = 456.0
 offset_top = 100.0
-offset_right = 657.0
+offset_right = 656.0
 offset_bottom = 250.0
 rotation = 1.5707964
 
@@ -82,41 +81,26 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 460.0
-offset_top = 201.0
-offset_right = 560.0
-offset_bottom = 301.0
+offset_left = 154.0
+offset_top = -1.0
+offset_right = 254.0
+offset_bottom = 99.0
 
 [node name="consumable" parent="EquippedItems" unique_id=1412526265 instance=ExtResource("6_60fop")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 563.0
-offset_top = 201.0
-offset_right = 663.0
-offset_bottom = 301.0
-
-[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=717064956]
-anchors_preset = -1
-anchor_right = 0.021000002
-anchor_bottom = 0.037
-offset_left = 44.000008
-offset_top = 39.999992
-offset_right = 1041.68
-offset_bottom = 82.03999
-scale = Vector2(0.525, 0.525)
-texture_under = ExtResource("7_60fop")
-texture_progress = ExtResource("8_1vsvy")
+offset_left = 257.0
+offset_top = -1.0
+offset_right = 357.0
+offset_bottom = 99.0
 
 [node name="StaminaBar" type="TextureProgressBar" parent="." unique_id=1669354635]
-anchors_preset = -1
-anchor_right = 0.021000002
-anchor_bottom = 0.037
-offset_left = 44.0
-offset_top = 95.0
-offset_right = 1041.68
-offset_bottom = 137.04001
-scale = Vector2(0.525, 0.525)
-texture_under = ExtResource("7_60fop")
-texture_progress = ExtResource("8_1vsvy")
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+fill_mode = 6
+texture_progress = ExtResource("7_ey3wo")
+tint_progress = Color(1, 1, 1, 0.03529412)

@@ -43,20 +43,23 @@
 		public float maxSpeed = 400.0f;
 		public float PushStrength = 500.0f;
 		public bool isSliding = false;
+		private float slideCooldown = 2f; 
+		private float slideCooldownTimer = 0f;
 
 		//--Stamina--//
 		private float stamina = 100f;
 		private float maxStamina = 100f;
-		private float staminaDrain = 40f;     // ile schodzi na sekundę przy biegu
-		private float staminaRegen = 25f;     // ile się regeneruje na sekundę
-		private float staminaRegenDelay = 0.5f; // opóźnienie regeneracji po biegu
-
+		private float staminaDrain = 40f;    
+		private float staminaRegen = 25f;    
+		private float staminaRegenDelay = 0.5f; 
 		private float staminaRegenTimer = 0f;
 
-		//--Cooldowns and cooldown stats--//
 
-		private float slideCooldown = 2f; 
-		private float slideCooldownTimer = 0f;
+		//--Footsteps--//
+		private float footstepTimer = 0f;
+		private float baseStepInterval = 0.5f; 
+
+		
 
 		//--References/Inventory--//
 		public EquipmentInventory playerInventory;
@@ -64,7 +67,9 @@
 		public WorldObjectManager worldObjectManager;
 		public TileMapLayer tileLayer;
 		private Camera2D playerCam;
-		private PointLight2D flashLight;
+		private PointLight2D flashLight;	
+		public Node2D handPivot;
+		public AnimatedSprite2D itemSprite;
 
 		/*the player needs to know the WorldObjectManager and tileMapLayer in order to kinda connect those.
 		WorldObjectManager needs to have the position and angle at which to drop an item and having
@@ -77,10 +82,14 @@
 			flashLight = GetNode<PointLight2D>("PointLight2D");
 			playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 			playerSounds = GetNode<AudioStreamPlayer2D>("PlayerSounds");
+			handPivot = GetNode<Node2D>("HandPivot");
+			itemSprite = GetNode<AnimatedSprite2D>("HandPivot/itemsprite");
 			playerInventory = new();
 			playerInventory.DropItem += OnDropItem;
 			flashLight.Position = this.Position;
-			EmitSignal(SignalName.HealthChanged, hp);
+			isSliding = false;
+			playerInventory.activeSlot = new(EquipmentType.LargeItem, 0);
+			EmitSignal(SignalName.SelectedSlot);
 			EmitSignal(SignalName.StaminaChanged, stamina);
 		}
 		public override void _Process(double delta)
@@ -90,7 +99,7 @@
 			isCrouched = Input.IsActionPressed("crouch");
 			slideHeld = Input.IsActionPressed("slide");
 			slidePressed = Input.IsActionJustPressed("slide");
-			bool camToggle = Input.IsKeyPressed(Godot.Key.Z);
+
 			if (Input.IsActionJustPressed("pickup"))
 			{
 				var spaceState = GetWorld2D().DirectSpaceState;
@@ -138,13 +147,12 @@
 			{
 				playerInventory.Drop(playerInventory.activeSlot.Key, playerInventory.activeSlot.Value);
 			}
-
 			if (Input.IsActionJustPressed("slot_large"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.LargeItem, 0);
 				EmitSignal(SignalName.SelectedSlot);
+				itemSprite.SpriteFrames = playerInventory.getActiveItem().useAnimation;
 			}
-
 			if (Input.IsActionJustPressed("slot_small_1"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.SmallItem, 0);
@@ -155,13 +163,11 @@
 				playerInventory.activeSlot = new(EquipmentType.SmallItem, 1);
 				EmitSignal(SignalName.SelectedSlot);
 			}
-
 			if (Input.IsActionJustPressed("slot_consumable_1"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.Consumable, 0);
 				EmitSignal(SignalName.SelectedSlot);
 			}
-
 			if (Input.IsActionJustPressed("slot_consumable_2"))
 			{
 				playerInventory.activeSlot = new(EquipmentType.Consumable, 1);
@@ -186,7 +192,7 @@
 			GlobalRotation -= Mathf.Pi/2;	
 			playerCam.GlobalPosition = (GlobalPosition * 0.8f+ mousePos * 0.2f);
 
-
+			
 			
 		}
 		public override void _PhysicsProcess(double delta)
@@ -194,6 +200,7 @@
 			
 			ResolveMovement(delta);
 			HandleStamina(delta);
+			HandleFootsteps(delta);
 			slidePressed = false;
 			MoveAndSlide();
 			for (int i = 0; i < GetSlideCollisionCount(); i++)
@@ -306,6 +313,39 @@
 			}
 			
 		}
+		private void HandleFootsteps(double delta)
+		{
+			if (movementInput == Vector2.Zero && Velocity.Length() < 20f || isSliding)
+			{
+				playerSounds.Stop();
+				return;
+			}
+			float stepInterval = baseStepInterval;
+			float volume = 0f;
+
+			if (isRunning && stamina > 0f)
+			{
+				stepInterval *= 0.6f;   
+				volume = -7f;            
+			}
+			else if (isCrouched)
+			{
+				stepInterval *= 1.5f;   
+				volume = -15f;          
+			}
+			else
+			{
+				volume = -10f;          
+			}
+
+			footstepTimer -= (float)delta;
+
+			if (footstepTimer <= 0f)
+			{
+				PlayFootstep(volume);
+				footstepTimer = stepInterval;
+			}
+		}
 		public void Damaged(int damage)
 		{
 			hp -= damage;
@@ -334,6 +374,16 @@
 				GlobalRotation,
 				force
 			);
+		}
+		private void PlayFootstep(float volumeDb)
+		{
+			GD.Print("footstep");
+			if (playerSounds.Stream == null)
+				return;
+
+			playerSounds.VolumeDb = volumeDb;
+			playerSounds.PitchScale = (float)GD.RandRange(0.8f, 1.2f); 
+			playerSounds.Play();
 		}
 
 	}

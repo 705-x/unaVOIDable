@@ -25,7 +25,9 @@ public partial class Item : Resource
 	[Export]
 	Vector2 holdingPoint; 
 	[Export]
-	public Texture2D textureHeld;
+	public SpriteFrames useAnimation;
+	[Export]
+	public SpriteFrames refillAnimation;
 	[Export]
 	public Texture2D Icon;
 	[Export]
@@ -40,15 +42,19 @@ public partial class Item : Resource
 	delegate void PickedUpEventHandler(Item item);
 
 
-	public void Use()
+	public virtual void Use()
 	{
-		throw new NotImplementedException();
+		GD.Print("Basic, not overloaded use");
 	}
 
-	public void SecondaryUse()
+	public virtual void SecondaryUse()
 	{
-		throw new NotImplementedException();
+		GD.Print("Basic, not overloaded secondary use");
 	}
 	
+	public virtual void Refill()
+	{
+		GD.Print("Basic, not overloaded refill (reload for weapons)");
+	}
 
 }

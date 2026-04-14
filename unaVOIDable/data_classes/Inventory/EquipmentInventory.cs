@@ -71,4 +71,9 @@
 
             //to implement this is js a placeholder
         }
+
+        public Item getActiveItem()
+        {
+            return slots[activeSlot.Key][activeSlot.Value];
+        }
     }
