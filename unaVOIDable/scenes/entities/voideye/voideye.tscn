@@ -1,29 +1,30 @@
 [gd_scene format=3 uid="uid://cgaf7dunl8us6"]
 
-[ext_resource type="Script" uid="uid://djshjbqphk8if" path="res://scenes/entities/smiler/Smiler.cs" id="1_uc7nu"]
-[ext_resource type="Texture2D" uid="uid://b1cyyr6miw3yf" path="res://scenes/entities/smiler/image_1776317483521.png" id="2_c2cvo"]
+[ext_resource type="Script" uid="uid://cocwy16rxpruc" path="res://scenes/entities/voideye/Voideye.cs" id="1_qqdhx"]
+[ext_resource type="Texture2D" uid="uid://dii2o4h4bqj7l" path="res://scenes/entities/voideye/image_1776318070085.png" id="2_634de"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_luco4"]
-radius = 71.17584
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lgu22"]
+radius = 61.0
+height = 212.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lysxa"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_vuy3r"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_c2cvo")
+"texture": ExtResource("2_634de")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Voideye" type="CharacterBody2D" unique_id=199476456]
-script = ExtResource("1_uc7nu")
+[node name="Voideye" type="CharacterBody2D" unique_id=1608763049]
+script = ExtResource("1_qqdhx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2090771621]
-shape = SubResource("CircleShape2D_luco4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=565737798]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_lgu22")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1453431585]
-sprite_frames = SubResource("SpriteFrames_lysxa")
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1988543062]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1895234668]
+position = Vector2(-2, -10)
+sprite_frames = SubResource("SpriteFrames_vuy3r")

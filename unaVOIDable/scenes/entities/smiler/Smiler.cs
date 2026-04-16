@@ -23,14 +23,13 @@ public partial class Smiler : CharacterBody2D
 
         agent.TargetPosition = player.GlobalPosition;
 
-        // ruch w stronę następnego punktu ścieżki
         Vector2 nextPosition = agent.GetNextPathPosition();
         Vector2 direction = (nextPosition - GlobalPosition).Normalized();
+		GlobalRotation = (GlobalPosition - player.GlobalPosition).Angle();
 
         Velocity = direction * Speed;
         MoveAndSlide();
 
-        // sprawdzanie dystansu do gracza
         float distance = GlobalTransform.Origin.DistanceTo(player.GlobalPosition);
 
         if (distance < AttackRange)

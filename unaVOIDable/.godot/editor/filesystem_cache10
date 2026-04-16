@@ -1,5 +1,5 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1776317876
+::res://::1776317894
 icon.svg::CompressedTexture2D::7234736451110295724::1769794710::1773322108::1::::<><><>0<>0<>d7ac0f4b75a4f77a004f8963a269e616<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://data_classes/::1776193342
 Item.cs::CSharpScript::2471602715884373279::1776255202::0::1::::Item<>Resource<><>0<>0<><>::
@@ -25,14 +25,14 @@ alice_soundz-gun-shot-sound-effect-224087.mp3::AudioStreamMP3::84822678630858697
 Crate.tres::Resource/Prop::6340160098925685550::1774291231::0::1::::<><><>0<>0<><>::uid://crrrpq05bi10e::::res://data_classes/Prop.cs<>uid://84ppwekbdxqc::::res://scenes/GAME(main)/assets/Zrzut ekranu 2026-01-28 201912.png
 ::res://scenes/::1776279908
 ::res://scenes/common/::1769794710
-::res://scenes/common/assets/::1776316598
+::res://scenes/common/assets/::1776318283
 Bez tytułu.png::CompressedTexture2D::4149080172420212884::1769794710::1769794927::1::::<><><>0<>0<>e248d7bcdae83aafebf86a53aae32630<>res://.godot/imported/Bez tytułu.png-66b232b9b3b16b39f106e1f5917399b8.ctex::
 blood_splatter.png::CompressedTexture2D::4792261093372719422::1769794711::1769794928::1::::<><><>0<>0<>fa4b75285afa092360ea74f9ec1fb007<>res://.godot/imported/blood_splatter.png-0e651fd00d4f7bb15d8b602a5251407b.ctex::
 fog_of_war.png::CompressedTexture2D::6188489338904226193::1769794711::1769794927::1::::<><><>0<>0<>65e2fe713d9d603e7ce2e0121699dff7<>res://.godot/imported/fog_of_war.png-8c947378630f331fadaafd9b471ebcae.ctex::
 radiallight.tres::GradientTexture2D::995091565592479098::1776315527::0::1::::<><><>0<>0<><>::
 room.png::CompressedTexture2D::4246520398609995733::1769794711::1769794928::1::::<><><>0<>0<>c281de3446d507fd515077ab49c24f05<>res://.godot/imported/room.png-4089b58fff7aa4b4e59f09f712e775af.ctex::
 testtiles.png::CompressedTexture2D::1238244458332271008::1774291231::1774293370::1::::<><><>0<>0<>361c1e0436e6c1c3ce4a30375c23ea6c<>res://.godot/imported/testtiles.png-43e5c2e5595e50c49cbee393b998b37d.ctex::
-tilescenetes.tres::TileSet::3748437247029965990::1776316598::0::1::::<><><>0<>0<><>::uid://rv2x8l4dxmqi::::res://scenes/common/assets/testtiles.png
+tilescenetes.tres::TileSet::3748437247029965990::1776318283::0::1::::<><><>0<>0<><>::uid://rv2x8l4dxmqi::::res://scenes/common/assets/testtiles.png
 ::res://scenes/endingScenes/::1776289908
 DeadScene.cs::CSharpScript::4928147252798104044::1776283284::0::1::::<>Node<><>0<>0<><>::
 deadScene.tscn::PackedScene::5577539478025186266::1776283372::0::1::::<><><>0<>0<><>::uid://cchh4ohqm7pui::::res://scenes/endingScenes/DeadScene.cs<>uid://den3xriolr2gw::::res://scenes/endingScenes/Orbitron Black.otf
@@ -49,12 +49,14 @@ run2.png::CompressedTexture2D::2641063335949514146::1769794711::1769794927::1:::
 ::res://scenes/entities/player/assets/footsteps/::1776275350
 alice_soundz-gun-shot-sound-effect-224087.mp3::AudioStreamMP3::5948785804282281985::1776275312::1776275350::1::::<><><>0<>0<>05d2ba0f53d511a0986846e7d3fb937c<>res://.godot/imported/alice_soundz-gun-shot-sound-effect-224087.mp3-62f76be559991f04004cfa7ddd6091fe.mp3str::
 floor0.mp3::AudioStreamMP3::2176338841731549943::1776193342::1776193348::1::::<><><>0<>0<>36f51150c0b6c0ef487892de936454f4<>res://.godot/imported/floor0.mp3-32f5eb24b2b1d329f5e845c531d89de2.mp3str::
-::res://scenes/entities/smiler/::1776317891
+::res://scenes/entities/smiler/::1776318283
 image_1776317483521.png::CompressedTexture2D::4216960382012878229::1776317819::1776317822::1::::<><><>0<>0<>c19833180acd275e0f65702a32dd7db1<>res://.godot/imported/image_1776317483521.png-36ef03d111f227af34cb1f42b6b9730a.ctex::
-Smiler.cs::CSharpScript::7828561612420717881::1776316925::0::1::::<><><>0<>0<><>::
-smiler.tscn::PackedScene::5891282804134210282::1776317881::0::1::::<><><>0<>0<><>::uid://djshjbqphk8if::::res://scenes/entities/smiler/Smiler.cs<>uid://b1cyyr6miw3yf::::res://scenes/entities/smiler/image_1776317483521.png
-::res://scenes/entities/voideye/::1776317886
-voideye.tscn::PackedScene::157348491489020250::1776317891::0::1::::<><><>0<>0<><>::uid://djshjbqphk8if::::res://scenes/entities/smiler/Smiler.cs<>uid://b1cyyr6miw3yf::::res://scenes/entities/smiler/image_1776317483521.png
+Smiler.cs::CSharpScript::7828561612420717881::1776318201::0::1::::<><><>0<>0<><>::
+smiler.tscn::PackedScene::5891282804134210282::1776318283::0::1::::<><><>0<>0<><>::uid://djshjbqphk8if::::res://scenes/entities/smiler/Smiler.cs<>uid://b1cyyr6miw3yf::::res://scenes/entities/smiler/image_1776317483521.png
+::res://scenes/entities/voideye/::1776318689
+image_1776318070085.png::CompressedTexture2D::7738953717445792607::1776318689::1776318690::1::::<><><>0<>0<>7dba49213a2bdb2b3404f3f5574880ce<>res://.godot/imported/image_1776318070085.png-869aa3de5e32823bea742f31e847186d.ctex::
+voideye.tscn::PackedScene::5194335348656005163::1776318303::0::1::::<><><>0<>0<><>::
+Voideye.cs::CSharpScript::5760993981021143222::1776318311::0::1::::<><><>0<>0<><>::
 ::res://scenes/GAME(main)/::1776316598
 Testing.cs::CSharpScript::8297867015500305817::1776316003::0::1::::<>Node<><>0<>0<><>::
 testing.gdshader::Shader::5702378104861423797::1776315527::0::1::::<><><>0<>0<><>::

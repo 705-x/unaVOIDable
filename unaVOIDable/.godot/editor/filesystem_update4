@@ -6,3 +6,4 @@ res://scenes/GAME(main)/testing.tscn
 res://scenes/entities/smiler/Smiler.cs
 res://scenes/entities/smiler/smiler.tscn
 res://scenes/entities/voideye/Voideye.cs
+res://scenes/entities/voideye/voideye.tscn
