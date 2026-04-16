@@ -28,8 +28,7 @@ public partial class EntityManager : RefCounted
         //tiles which are near the player at that moment
         foreach(var tile in occupiedTiles)
         {
-            var tilePos = tileLayer.LocalToMap(tile);
-            if(tilePos.DistanceTo(playerWorld) < radius)
+            if(tile.DistanceTo(playerWorld) < radius)
             {
                 candidateTiles.Add(tile);
             }
@@ -48,7 +47,7 @@ public partial class EntityManager : RefCounted
         GD.Print("spawned");
         var enemyNode = enemy.Instantiate();
         var worldEnemy = enemyNode as CharacterBody2D;
-        worldEnemy.GlobalPosition = tileLayer.MapToLocal(pos);
+        worldEnemy.GlobalPosition = tileLayer.ToGlobal(pos);
         parent.AddChild(worldEnemy);
     }
 }

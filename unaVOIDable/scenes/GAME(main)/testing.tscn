@@ -19,6 +19,7 @@ color = Color(0.056291588, 0.056291603, 0.056291573, 1)
 
 [node name="Player" parent="." unique_id=336779982 instance=ExtResource("1_ryjsw")]
 z_index = 5
+position = Vector2(42, -3)
 
 [node name="Hud" parent="." unique_id=356615190 instance=ExtResource("3_i85fu")]
 layer = 2

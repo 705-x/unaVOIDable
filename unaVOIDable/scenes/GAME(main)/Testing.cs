@@ -54,7 +54,7 @@ public partial class Testing : Node
     	enemyTimer.WaitTime = 5.0f;
     	enemyTimer.Autostart = true;
     	AddChild(enemyTimer);
-    	enemyTimer.Timeout += () => entityManager.SpawnNearPlayer((Vector2I)player.Position, 50, usedCells);
+    	enemyTimer.Timeout += () => entityManager.SpawnNearPlayer((Vector2I)player.Position, 10, usedCells);
 
 		
 	}
