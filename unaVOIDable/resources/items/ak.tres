@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="Firearm" format=3 uid="uid://d0ecvvs7a6e8y"]
+
+[ext_resource type="Texture2D" uid="uid://c1bdnrvxa1deo" path="res://scenes/GAME(main)/assets/ak12onground.png" id="1_av2gr"]
+[ext_resource type="Script" uid="uid://b1lxmeqtmb438" path="res://data_classes/items/Firearm.cs" id="2_uyytv"]
+[ext_resource type="AudioStream" uid="uid://ds34yhtmdkcsc" path="res://resources/items/default/alice_soundz-gun-shot-sound-effect-224087.mp3" id="3_sjor3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sfth1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_av2gr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("2_uyytv")
+damage = 20.0
+zoomLevel = 1.2
+ammo = 30
+maxAmmo = 30
+fireMode = 2
+shotSound = ExtResource("3_sjor3")
+baseSpread = 8.0
+adsSpreadMultiplier = 0.1
+useAnimation = SubResource("SpriteFrames_sfth1")
+Icon = ExtResource("1_av2gr")
+equipmentType = 3
+spawnChance = 50
+metadata/_custom_type_script = "uid://b1lxmeqtmb438"

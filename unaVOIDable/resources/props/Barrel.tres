@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Prop" format=3 uid="uid://dktacymtxmetu"]
+
+[ext_resource type="Script" uid="uid://crrrpq05bi10e" path="res://data_classes/Prop.cs" id="1_tsxs5"]
+
+[resource]
+script = ExtResource("1_tsxs5")
+Mass = 900.0
+spawnChance = 10
+metadata/_custom_type_script = "uid://crrrpq05bi10e"

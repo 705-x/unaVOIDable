@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Firearm" format=3 uid="uid://cwcfpmqwk4hoj"]
+
+[ext_resource type="Script" uid="uid://b1lxmeqtmb438" path="res://data_classes/items/Firearm.cs" id="1_yuqde"]
+[ext_resource type="AudioStream" uid="uid://cq0vvr3dvdex2" path="res://scenes/entities/player/assets/footsteps/alice_soundz-gun-shot-sound-effect-224087.mp3" id="2_shx1i"]
+
+[resource]
+script = ExtResource("1_yuqde")
+damage = 100.0
+zoomLevel = 2.0
+fireRate = 0.05
+ammo = 5
+maxAmmo = 5
+shotSound = ExtResource("2_shx1i")
+baseSpread = 0.5
+adsSpreadMultiplier = 0.1
+muzzleFlashEnergy = 2.0
+muzzleFlashScale = 50.0
+equipmentType = 3
+spawnChance = 50
+metadata/_custom_type_script = "uid://b1lxmeqtmb438"

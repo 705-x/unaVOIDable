@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RecoveryItem" format=3 uid="uid://caktkxx4ylgwl"]
+
+[ext_resource type="Script" uid="uid://dx87lrjj615mx" path="res://data_classes/items/RecoveryItem.cs" id="1_j4jv8"]
+
+[resource]
+script = ExtResource("1_j4jv8")
+healthReplenish = 50
+staminaReplenish = 0
+equipmentType = 4
+uses = 3
+metadata/_custom_type_script = "uid://dx87lrjj615mx"
