@@ -88,24 +88,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ryzen\\.nuget\\packages\\": {}
+    "C:\\Users\\Maciek\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\my_work\\unaVOIDable\\unaVOIDable\\BACKROOMS.csproj",
+      "projectUniqueName": "F:\\my_work\\unaVOIDable\\unaVOIDable\\BACKROOMS.csproj",
       "projectName": "BACKROOMS",
-      "projectPath": "D:\\my_work\\unaVOIDable\\unaVOIDable\\BACKROOMS.csproj",
-      "packagesPath": "C:\\Users\\Ryzen\\.nuget\\packages\\",
-      "outputPath": "D:\\my_work\\unaVOIDable\\unaVOIDable\\.godot\\mono\\temp\\obj\\",
+      "projectPath": "F:\\my_work\\unaVOIDable\\unaVOIDable\\BACKROOMS.csproj",
+      "packagesPath": "C:\\Users\\Maciek\\.nuget\\packages\\",
+      "outputPath": "F:\\my_work\\unaVOIDable\\unaVOIDable\\.godot\\mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Ryzen\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Maciek\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

@@ -22,6 +22,7 @@ public partial class Testing : Node
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
 		lightManager = new(this, tileLayer);
 		objManager = new(this, tileLayer);
+		PackedScene teleporter = ResourceLoader.Load<PackedScene>("res://scenes/rooms/LVL0_structures/TELEPORTER.tscn");
 
 		player = (Player)GetNode("Player");
 		player.worldObjectManager = objManager;
@@ -36,6 +37,7 @@ public partial class Testing : Node
 		objManager.loadObjects();
 		objManager.spawnWorldObjects();
 
+		GenerateRoom(usedCells.ElementAt(rand.Next(usedCells.Count)), teleporter);
 		var timer = new Timer();
     	timer.WaitTime = 0.5f;
     	timer.Autostart = true;
@@ -124,7 +126,8 @@ public partial class Testing : Node
             	}
         }
     }
-}
+		
+	}
 	public List<RoomNode> GenerateFloorGraph(int count, int blockinessCoeff)
 	{
 		//BlockinessCoeff is the chance to generate a connected room. The smaller it is - the more
