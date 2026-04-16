@@ -14,6 +14,7 @@ public partial class Testing : Node
 	System.Collections.Generic.Dictionary<PackedScene, Vector2I> roomSizeCache = new();
 	LightManager lightManager;
 	WorldObjectManager objManager;
+	EntityManager entityManager;
 	Random rand = new();
 	int GeneratedRoomCounter = 0;
 	public override void _Ready()
@@ -22,8 +23,11 @@ public partial class Testing : Node
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
 		lightManager = new(this, tileLayer);
 		objManager = new(this, tileLayer);
-		PackedScene teleporter = ResourceLoader.Load<PackedScene>("res://scenes/rooms/LVL0_structures/TELEPORTER.tscn");
 
+		PackedScene teleporter = ResourceLoader.Load<PackedScene>("res://scenes/rooms/LVL0_structures/TELEPORTER.tscn");
+		PackedScene smiler = ResourceLoader.Load<PackedScene>("res://scenes/entities/smiler/smiler.tscn");
+		PackedScene voideye = ResourceLoader.Load<PackedScene>("res://scenes/entities/voideye/voideye.tscn");
+		entityManager = new(this, tileLayer, smiler, voideye);
 		player = (Player)GetNode("Player");
 		player.worldObjectManager = objManager;
 		player.tileLayer = tileLayer;
@@ -31,18 +35,26 @@ public partial class Testing : Node
 		
 		LoadLevelRooms(0);
 		GenerateFloor(5000, 7, 2);
+		GenerateRoom(usedCells.ElementAt(rand.Next(usedCells.Count)), teleporter);
 		SolidifyOutlines();
 		GD.Print(GeneratedRoomCounter);	
 		lightManager.CreateLights();
 		objManager.loadObjects();
 		objManager.spawnWorldObjects();
 
-		GenerateRoom(usedCells.ElementAt(rand.Next(usedCells.Count)), teleporter);
+		
 		var timer = new Timer();
     	timer.WaitTime = 0.5f;
     	timer.Autostart = true;
     	AddChild(timer);
     	timer.Timeout += () => lightManager.UpdateNearPlayer((Vector2I)player.Position, 35);
+		
+
+		var enemyTimer = new Timer();
+    	enemyTimer.WaitTime = 5.0f;
+    	enemyTimer.Autostart = true;
+    	AddChild(enemyTimer);
+    	enemyTimer.Timeout += () => entityManager.SpawnNearPlayer((Vector2I)player.Position, 10, usedCells);
 
 		
 	}
