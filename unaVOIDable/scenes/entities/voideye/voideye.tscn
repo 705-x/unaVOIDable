@@ -1,3 +1,30 @@
 [gd_scene format=3 uid="uid://cgaf7dunl8us6"]
 
-[node name="Voideye" type="CharacterBody2D" unique_id=1526579823]
+[ext_resource type="Script" uid="uid://cocwy16rxpruc" path="res://scenes/entities/voideye/Voideye.cs" id="1_qqdhx"]
+[ext_resource type="Texture2D" uid="uid://dii2o4h4bqj7l" path="res://scenes/entities/voideye/image_1776318070085.png" id="2_634de"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lgu22"]
+radius = 61.0
+height = 212.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vuy3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_634de")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Voideye" type="CharacterBody2D" unique_id=1608763049]
+script = ExtResource("1_qqdhx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=565737798]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_lgu22")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1895234668]
+position = Vector2(-2, -10)
+sprite_frames = SubResource("SpriteFrames_vuy3r")
