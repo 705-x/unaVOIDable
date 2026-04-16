@@ -8,12 +8,12 @@ public partial class Smiler : CharacterBody2D
     [Export] public float AttackRange = 1.5f;
 
     private NavigationAgent2D agent;
-    private Player player;
+    public Player player;
 
     public override void _Ready()
     {
+		player = GetNode<Player>("/root/Main/Player");
         agent = GetNode<NavigationAgent2D>("NavigationAgent2D");
-        player = GetTree().GetFirstNodeInGroup("Player") as Player;
     }
 
     public override void _PhysicsProcess(double delta)

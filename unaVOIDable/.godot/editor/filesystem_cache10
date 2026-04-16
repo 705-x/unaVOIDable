@@ -1,7 +1,8 @@
 63f7b34db8d8cdea90c76aacccf841ec
 ::res://::1776317894
 icon.svg::CompressedTexture2D::7234736451110295724::1769794710::1773322108::1::::<><><>0<>0<>d7ac0f4b75a4f77a004f8963a269e616<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-::res://data_classes/::1776193342
+::res://data_classes/::1776320100
+EntityManager.cs::CSharpScript::5693896500295798684::1776320428::0::1::::<><><>0<>0<><>::
 Item.cs::CSharpScript::2471602715884373279::1776255202::0::1::::Item<>Resource<><>0<>0<><>::
 lightManager.cs::CSharpScript::1765971051343363231::1776193342::0::1::::<><><>0<>0<><>::
 Prop.cs::CSharpScript::6002205987195829262::1774291231::0::1::::Prop<>Resource<><>0<>0<><>::
@@ -51,14 +52,14 @@ alice_soundz-gun-shot-sound-effect-224087.mp3::AudioStreamMP3::59487858042822819
 floor0.mp3::AudioStreamMP3::2176338841731549943::1776193342::1776193348::1::::<><><>0<>0<>36f51150c0b6c0ef487892de936454f4<>res://.godot/imported/floor0.mp3-32f5eb24b2b1d329f5e845c531d89de2.mp3str::
 ::res://scenes/entities/smiler/::1776318283
 image_1776317483521.png::CompressedTexture2D::4216960382012878229::1776317819::1776317822::1::::<><><>0<>0<>c19833180acd275e0f65702a32dd7db1<>res://.godot/imported/image_1776317483521.png-36ef03d111f227af34cb1f42b6b9730a.ctex::
-Smiler.cs::CSharpScript::7828561612420717881::1776318201::0::1::::<><><>0<>0<><>::
+Smiler.cs::CSharpScript::7828561612420717881::1776318792::0::1::::<>CharacterBody2D<><>0<>0<><>::
 smiler.tscn::PackedScene::5891282804134210282::1776318283::0::1::::<><><>0<>0<><>::uid://djshjbqphk8if::::res://scenes/entities/smiler/Smiler.cs<>uid://b1cyyr6miw3yf::::res://scenes/entities/smiler/image_1776317483521.png
-::res://scenes/entities/voideye/::1776318689
+::res://scenes/entities/voideye/::1776318780
 image_1776318070085.png::CompressedTexture2D::7738953717445792607::1776318689::1776318690::1::::<><><>0<>0<>7dba49213a2bdb2b3404f3f5574880ce<>res://.godot/imported/image_1776318070085.png-869aa3de5e32823bea742f31e847186d.ctex::
-voideye.tscn::PackedScene::5194335348656005163::1776318303::0::1::::<><><>0<>0<><>::
-Voideye.cs::CSharpScript::5760993981021143222::1776318311::0::1::::<><><>0<>0<><>::
+voideye.tscn::PackedScene::5194335348656005163::1776318738::0::1::::<><><>0<>0<><>::uid://cocwy16rxpruc::::res://scenes/entities/voideye/Voideye.cs<>uid://dii2o4h4bqj7l::::res://scenes/entities/voideye/image_1776318070085.png
+Voideye.cs::CSharpScript::5760993981021143222::1776318311::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://scenes/GAME(main)/::1776316598
-Testing.cs::CSharpScript::8297867015500305817::1776316003::0::1::::<>Node<><>0<>0<><>::
+Testing.cs::CSharpScript::8297867015500305817::1776320360::0::1::::<>Node<><>0<>0<><>::
 testing.gdshader::Shader::5702378104861423797::1776315527::0::1::::<><><>0<>0<><>::
 testing.tscn::PackedScene::5133828066630398848::1776316598::0::1::::<><><>0<>0<><>::uid://d13tyfxx8qh56::::res://scenes/entities/player/player.tscn<>uid://dqhswl758ppl6::::res://scenes/GAME(main)/Testing.cs<>uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres<>uid://cmsvehb3jbbqq::::res://scenes/UI/HUD/hud.tscn
 ::res://scenes/GAME(main)/assets/::1776250688
@@ -81,7 +82,7 @@ Orbitron Black.otf::FontFile::2342115677671927223::1776277610::1776277610::1::::
 PropNode2D.cs::CSharpScript::8279184696142818682::1769794712::0::1::::<>RigidBody2D<><>0<>0<><>::
 prop_node_2d.tscn::PackedScene::3861553479148954310::1774291231::0::1::::<><><>0<>0<><>::uid://dp7q7yp4r2sde::::res://scenes/prop/PropNode2D.cs
 ::res://scenes/rooms/::1776289797
-::res://scenes/rooms/LVL0/::1774291231
+::res://scenes/rooms/LVL0/::1776320446
 CHAIN.tscn::PackedScene::8591954314542653143::1774291231::0::1::::<><><>0<>0<><>::uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres
 CHAINLIGHT.tscn::PackedScene::8643687314226375961::1774291231::0::1::::<><><>0<>0<><>::uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres
 COLUMN.tscn::PackedScene::2064279630113804445::1774291231::0::1::::<><><>0<>0<><>::uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres
@@ -93,6 +94,7 @@ QUAD_DOOR.tscn::PackedScene::5141250294489354269::1774291231::0::1::::<><><>0<>0
 VERTICALCUBICLES.tscn::PackedScene::6780362744795259494::1774291231::0::1::::<><><>0<>0<><>::uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres
 VERT_HALLWAY.tscn::PackedScene::3358025297079181492::1774291231::0::1::::<><><>0<>0<><>::uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres
 ::res://scenes/rooms/LVL0_structures/::1776289797
+TELEPORTER.tscn::PackedScene::4741751964770666628::1776320446::0::1::::<><><>0<>0<><>::uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres
 ::res://scenes/UI/::1776193342
 ::res://scenes/UI/equipmentSlots/::1776193342
 ConsumableSlot.cs::CSharpScript::2459374476762367947::1776193342::0::1::::<>Panel<><>0<>0<><>::

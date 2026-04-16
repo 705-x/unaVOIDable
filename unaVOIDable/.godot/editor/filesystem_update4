@@ -7,3 +7,13 @@ res://scenes/entities/smiler/Smiler.cs
 res://scenes/entities/smiler/smiler.tscn
 res://scenes/entities/voideye/Voideye.cs
 res://scenes/entities/voideye/voideye.tscn
+res://scenes/endingScenes/EscapedScene.cs
+res://scenes/endingScenes/DeadScene.cs
+res://scenes/mainMenu/MainMenu.cs
+res://scenes/groundItem/ItemNode2D.cs
+res://scenes/UI/equipmentSlots/ConsumableSlot.cs
+res://scenes/UI/equipmentSlots/SmallItemSlot.cs
+res://scenes/UI/equipmentSlots/LargeItemSlot.cs
+res://scenes/UI/HUD/Hud.cs
+res://scenes/entities/player/Player.cs
+res://scenes/rooms/LVL0_structures/TELEPORTER.tscn
