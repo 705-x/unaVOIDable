@@ -1,3 +1,8 @@
 res://scenes/common/assets/radiallight.tres
 res://scenes/common/assets/tilescenetes.tres
 res://scenes/GAME(main)/testing.gdshader
+res://scenes/GAME(main)/Testing.cs
+res://scenes/GAME(main)/testing.tscn
+res://scenes/entities/smiler/Smiler.cs
+res://scenes/entities/smiler/smiler.tscn
+res://scenes/entities/voideye/Voideye.cs

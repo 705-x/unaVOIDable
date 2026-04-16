@@ -31,13 +31,14 @@ public partial class Testing : Node
 		
 		LoadLevelRooms(0);
 		GenerateFloor(5000, 7, 2);
+		GenerateRoom(usedCells.ElementAt(rand.Next(usedCells.Count)), teleporter);
 		SolidifyOutlines();
 		GD.Print(GeneratedRoomCounter);	
 		lightManager.CreateLights();
 		objManager.loadObjects();
 		objManager.spawnWorldObjects();
 
-		GenerateRoom(usedCells.ElementAt(rand.Next(usedCells.Count)), teleporter);
+		
 		var timer = new Timer();
     	timer.WaitTime = 0.5f;
     	timer.Autostart = true;

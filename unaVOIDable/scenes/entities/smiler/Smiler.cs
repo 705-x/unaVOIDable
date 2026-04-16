@@ -1,0 +1,49 @@
+using Godot;
+using System;
+
+public partial class Smiler : CharacterBody2D
+{
+	[Export] public float Speed = 4.0f;
+    [Export] public float Damage = 10.0f;
+    [Export] public float AttackRange = 1.5f;
+
+    private NavigationAgent2D agent;
+    private Player player;
+
+    public override void _Ready()
+    {
+        agent = GetNode<NavigationAgent2D>("NavigationAgent2D");
+        player = GetTree().GetFirstNodeInGroup("Player") as Player;
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (player == null)
+            return;
+
+        agent.TargetPosition = player.GlobalPosition;
+
+        // ruch w stronę następnego punktu ścieżki
+        Vector2 nextPosition = agent.GetNextPathPosition();
+        Vector2 direction = (nextPosition - GlobalPosition).Normalized();
+
+        Velocity = direction * Speed;
+        MoveAndSlide();
+
+        // sprawdzanie dystansu do gracza
+        float distance = GlobalTransform.Origin.DistanceTo(player.GlobalPosition);
+
+        if (distance < AttackRange)
+        {
+            Attack();
+        }
+    }
+
+    private void Attack()
+    {
+        if (player is Player playerBody)
+        {
+            playerBody.Damaged(20);
+        }
+    }
+}

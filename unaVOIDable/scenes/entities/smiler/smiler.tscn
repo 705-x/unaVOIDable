@@ -1,3 +1,29 @@
 [gd_scene format=3 uid="uid://cp61tjrusyn51"]
 
+[ext_resource type="Script" uid="uid://djshjbqphk8if" path="res://scenes/entities/smiler/Smiler.cs" id="1_slqkv"]
+[ext_resource type="Texture2D" uid="uid://b1cyyr6miw3yf" path="res://scenes/entities/smiler/image_1776317483521.png" id="2_luco4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_luco4"]
+radius = 71.17584
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lysxa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_luco4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Smiler" type="CharacterBody2D" unique_id=199476456]
+script = ExtResource("1_slqkv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2090771621]
+shape = SubResource("CircleShape2D_luco4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1453431585]
+sprite_frames = SubResource("SpriteFrames_lysxa")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1988543062]
