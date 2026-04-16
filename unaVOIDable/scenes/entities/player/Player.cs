@@ -30,6 +30,8 @@
 		public bool isCrouched;
 		public bool slidePressed;
 		public bool slideHeld;
+		public bool isHoldingUse;
+		public bool isHoldingSecondaryUse;
 
 		//--Stats--//
 		private float hp = 100;
@@ -62,10 +64,12 @@
 		//--References/Inventory--//
 		public EquipmentInventory playerInventory;
 		public AudioStreamPlayer2D playerSounds;
+		public AudioStreamPlayer2D shotSounds;
+		public AudioStreamPlayer2D animationSounds;
 		public WorldObjectManager worldObjectManager;
 		public TileMapLayer tileLayer;
 		private Camera2D playerCam;
-		private PointLight2D flashLight;	
+		public PointLight2D flashLight;	
 		public Node2D handPivot;
 		public AnimatedSprite2D itemSprite;
 
@@ -79,7 +83,9 @@
 			playerCam = GetNode<Camera2D>("Camera");
 			flashLight = GetNode<PointLight2D>("PointLight2D");
 			playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-			playerSounds = GetNode<AudioStreamPlayer2D>("PlayerSounds");
+			playerSounds = GetNode<AudioStreamPlayer2D>("Footsteps");
+			shotSounds = GetNode<AudioStreamPlayer2D>("ShotSounds");
+			animationSounds = GetNode<AudioStreamPlayer2D>("AnimationSounds");
 			handPivot = GetNode<Node2D>("HandPivot");
 			itemSprite = GetNode<AnimatedSprite2D>("HandPivot/itemsprite");
 			playerInventory = new();
@@ -92,6 +98,7 @@
 		}
 		public override void _Process(double delta)
 		{
+			//--inputs--//
 			movementInput = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 			isRunning = Input.IsActionPressed("run");
 			isCrouched = Input.IsActionPressed("crouch");
@@ -190,23 +197,21 @@
 				itemSprite.SpriteFrames = activeItem.useAnimation;
 			}
 
-			
+			if (Input.IsKeyPressed(Key.Key0))
+			{
+				GetTree().ChangeSceneToFile("res://scenes/endingScenes/escapedScene.tscn");
+			}
+			if (Input.IsKeyPressed(Key.Key9))
+			{
+				GetTree().ChangeSceneToFile("res://scenes/endingScenes/deadScene.tscn");
+			}
+			//--Mouse position and rotation--//
+			Vector2 mousePos = GetViewport().GetMousePosition() - GetViewport().GetVisibleRect().Size * 0.5f;
+			//this is the mousePosition minus Viewport/2, so the mouse's 0,0 coords are in the center.
+			GlobalRotation = (GetGlobalMousePosition() - GlobalPosition).Angle();
+			GlobalRotation -= Mathf.Pi/2;	
+			playerCam.GlobalPosition = (GlobalPosition + mousePos * 0.2f);
 
-			if (Input.IsActionJustPressed("primary_action"))
-			{
-				activeItem.Use();
-			}
-			if (Input.IsActionJustPressed("secondary_action"))
-			{
-				activeItem.SecondaryUse();
-			}
-			if (Input.IsActionJustPressed("refill"))
-			{
-				activeItem.Refill();
-			}
-			//this is an ugly and downright tedious way to do this. I'll figure out how to do it better soon
-
-			//i added some more shi, absolute if hell XDDD but idgaf i don't have much time
 
 			/*if (camToggle)
 			{
@@ -217,11 +222,42 @@
 				playerCam.Zoom = new((float)0.85,(float)0.85);
 			}*/
 
-			Vector2 mousePos = GetGlobalMousePosition();
-			GlobalRotation = (mousePos - GlobalPosition).Angle();
-			GlobalRotation -= Mathf.Pi/2;	
-			playerCam.GlobalPosition = (GlobalPosition * 0.8f+ mousePos * 0.2f);
+			//--Item use logic--//
+			if (Input.IsActionJustPressed("primary_action") && activeItem != null)
+			{
+				activeItem.Use(this);
+				this.isHoldingUse = true;
+			}else if(Input.IsActionJustReleased("primary_action") && activeItem != null)
+			{
+				this.isHoldingUse = false;
+			}
+			if (Input.IsActionJustPressed("secondary_action") && activeItem != null)
+			{
+				activeItem.SecondaryUse(this);
+				this.isHoldingSecondaryUse = true;
+			}else if(Input.IsActionJustReleased("secondary_action") && activeItem != null)
+			{
+				this.isHoldingSecondaryUse = false;
+			}
+			if (Input.IsActionJustPressed("refill") && activeItem != null)
+			{
+				activeItem.Refill(this);
+			}
+
+
+			if(activeItem is Firearm firearm && this.isHoldingSecondaryUse)
+			{
+				playerCam.GlobalPosition = (GlobalPosition + (mousePos * (firearm.zoomLevel-0.8f)));
+			}
+			if(activeItem != null)
+			{
+				activeItem.Tick(this, delta);
+			}	
+			//this is an ugly and downright tedious way to do this. I'll figure out how to do it better soon
+
+			//i added some more shi, absolute if hell XDDD but idgaf i don't have much time
 			
+				
 		}
 		public override void _PhysicsProcess(double delta)
 		{
@@ -278,6 +314,10 @@
 				movementInput = Vector2.Zero;
 			}
 
+			if(isHoldingUse || isHoldingSecondaryUse)
+			{
+				calcMaxSpeed *= 0.5f;
+			}
 			//these Ifs modify the base values based on the player state, basically a really stupid way of changing max speed dependant on what the player is doing
 			
 			float frictionDelta = (float)delta * calcFriction;
@@ -378,6 +418,10 @@
 		{
 			hp -= damage;
 			EmitSignal(SignalName.HealthChanged, hp);
+			if(hp <= 0)
+			{
+				GetTree().ChangeSceneToFile("res://scenes/endingScenes/deadScene.tscn");
+			}
 		}
 		public void Damaged(int damage, Vector2 force)
 		{
@@ -385,8 +429,30 @@
 			Velocity += force;
 			EmitSignal(SignalName.HealthChanged, hp);
 
+			if(hp <= 0)
+			{
+				GetTree().ChangeSceneToFile("res://scenes/endingScenes/deadScene.tscn");
+			}
 			//thought it'd be funny if the player could be flung around by strong attacks.
 		}
+		public void Heal(int amount)
+		{
+			hp += amount;
+
+			if (hp > 100)
+				hp = 100;
+
+			EmitSignal(SignalName.HealthChanged, hp);
+		}
+		public void AddStamina(float amount)
+		{
+			stamina += amount;
+			if (stamina > maxStamina)
+				stamina = maxStamina;
+
+			EmitSignal(SignalName.StaminaChanged, stamina);
+		}
+		//these three methods are for items to be able to interact with hp and stamina of the player
 		public void OnDropItem(Item item)
 		{
 			Vector2 size = playerSprite.SpriteFrames.GetFrameTexture(playerSprite.Animation, playerSprite.Frame).GetSize();
@@ -406,6 +472,7 @@
 		private void PlayFootstep(float volumeDb)
 		{
 			GD.Print("footstep");
+			//debug
 			if (playerSounds.Stream == null)
 				return;
 
@@ -413,7 +480,49 @@
 			playerSounds.PitchScale = (float)GD.RandRange(0.8f, 1.2f); 
 			playerSounds.Play();
 		}
+		public void PlayShot(float volumeDb, AudioStream stream)
+		{
+			shotSounds.Stream = stream;
+			shotSounds.VolumeDb = volumeDb;
+			shotSounds.PitchScale = (float)GD.RandRange(0.8f, 1.2f); 
+			shotSounds.Play();
+		}
+		public void PlayAnimationSound(float volumeDb, AudioStream stream)
+		{
+			shotSounds.Stream = stream;
+			shotSounds.VolumeDb = volumeDb;
+			shotSounds.PitchScale = (float)GD.RandRange(0.95f, 1.1f); 
+			shotSounds.Play();
+		}
+		public void RemoveActiveItem()
+		{
+			playerInventory.RemoveActiveItem();
+			//this is just a wrapper which connects this so the Item can cast this from within itself.
+			//for entire logic, see playerInventory.RemoveActiveItem
+		}
+		public async void PlayItemAnimation(string animationName = "use")
+		{
+			if (itemSprite == null || itemSprite.SpriteFrames == null)
+				return;
+			//if item doesn't have anim it just skips this function
+			if (!itemSprite.SpriteFrames.HasAnimation(animationName))
+			{
+				GD.Print($"Animation '{animationName}' not found!");
+				return;
+			}
+			//incase i forget, just so i know which item doesn't have an animation
+			itemSprite.Play(animationName);
 
+			await ToSignal(itemSprite, AnimatedSprite2D.SignalName.AnimationFinished);
+
+			itemSprite.Stop();
+
+			//plays, then waits for the end of the animation, then stops. Self-explanatory
+		}
+		public Vector2 GetAimDirection()
+		{
+			return (GetGlobalMousePosition() - GlobalPosition).Normalized();
+		}
 	}
 
 		

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dq0ef5tqmlqw7"]
+
+[ext_resource type="Script" uid="uid://bwwd0phbmn0fg" path="res://scenes/mainMenu/MainMenu.cs" id="1_6q8wo"]
+[ext_resource type="Texture2D" uid="uid://b1rbtnssdfcfl" path="res://scenes/common/assets/room.png" id="1_xjkj1"]
+[ext_resource type="FontFile" uid="uid://8mskkkbyggcl" path="res://scenes/mainMenu/Orbitron Black.otf" id="2_6q8wo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xs65i"]
+font = ExtResource("2_6q8wo")
+font_size = 81
+shadow_size = 39
+shadow_color = Color(0, 0, 0, 0.21568628)
+shadow_offset = Vector2(-13.05, 1)
+
+[node name="MainMenu" type="Control" unique_id=1308373991]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6q8wo")
+
+[node name="QUIT" type="Button" parent="." unique_id=859497757]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 587.0
+offset_right = 476.0
+offset_bottom = 688.0
+tooltip_text = "_you_cant_a_VOID_it_"
+theme_override_fonts/font = ExtResource("2_6q8wo")
+theme_override_font_sizes/font_size = 36
+text = "_TRIAL_END_"
+
+[node name="BEGIN" type="Button" parent="." unique_id=49759047]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 456.0
+offset_right = 363.0
+offset_bottom = 563.0
+tooltip_text = "_are_you_sure_?"
+theme_override_fonts/font = ExtResource("2_6q8wo")
+theme_override_font_sizes/font_size = 36
+text = "_BEGIN_"
+
+[node name="background" type="Sprite2D" parent="." unique_id=54290351]
+modulate = Color(1, 1, 1, 0.24705882)
+position = Vector2(572, -194.99998)
+scale = Vector2(1.3445, 1.2945)
+texture = ExtResource("1_xjkj1")
+
+[node name="Label" type="Label" parent="." unique_id=588890123]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 160.0
+offset_right = 1153.0
+offset_bottom = 312.0
+text = "un_a_VOID_able.exe"
+label_settings = SubResource("LabelSettings_xs65i")
+horizontal_alignment = 1
+vertical_alignment = 1

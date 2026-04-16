@@ -19,11 +19,11 @@ public partial class Item : Resource
 {
 		
 	[Export]
-	Vector2 worldSize;
+	public Vector2 worldSize;
 	[Export]
-	Vector2 gridSize;
+	public Vector2 gridSize;
 	[Export]
-	Vector2 holdingPoint; 
+	public Vector2 holdingPoint; 
 	[Export]
 	public SpriteFrames useAnimation;
 	[Export]
@@ -32,6 +32,8 @@ public partial class Item : Resource
 	public Texture2D Icon;
 	[Export]
 	public EquipmentType equipmentType;
+	[Export]
+	public int uses = 1; //this only gets checked if the item is a consumable, 1 by default
 	[Export]
 	public int spawnChance; //in promiles
 
@@ -42,19 +44,24 @@ public partial class Item : Resource
 	delegate void PickedUpEventHandler(Item item);
 
 
-	public virtual void Use()
+	public virtual void Use(Player player)
 	{
 		GD.Print("Basic, not overloaded use");
 	}
 
-	public virtual void SecondaryUse()
+	public virtual void SecondaryUse(Player player)
 	{
 		GD.Print("Basic, not overloaded secondary use");
 	}
 	
-	public virtual void Refill()
+	public virtual void Refill(Player player)
 	{
 		GD.Print("Basic, not overloaded refill (reload for weapons)");
+	}
+
+	public virtual void Tick(Player player, double delta)
+	{
+		return;
 	}
 
 }

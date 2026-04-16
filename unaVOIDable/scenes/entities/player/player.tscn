@@ -47,7 +47,12 @@ shadow_item_cull_mask = 3
 texture = ExtResource("3_58kc7")
 texture_scale = 10.0
 
-[node name="PlayerSounds" type="AudioStreamPlayer2D" parent="." unique_id=920564256]
+[node name="Footsteps" type="AudioStreamPlayer2D" parent="." unique_id=920564256]
 stream = ExtResource("4_nh4ur")
 volume_db = 24.0
 parameters/looping = true
+
+[node name="ShotSounds" type="AudioStreamPlayer2D" parent="." unique_id=1513997380]
+volume_db = 24.0
+
+[node name="AnimationSounds" type="AudioStreamPlayer2D" parent="." unique_id=1214179125]

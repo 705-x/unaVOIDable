@@ -21,4 +21,3 @@ useAnimation = SubResource("SpriteFrames_elusj")
 Icon = ExtResource("1_elusj")
 equipmentType = 3
 spawnChance = 100
-metadata/_custom_type_script = "uid://kas0lr3jnutg"

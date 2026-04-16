@@ -1,47 +1,61 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1776193342
+::res://::1776288623
 icon.svg::CompressedTexture2D::7234736451110295724::1769794710::1773322108::1::::<><><>0<>0<>d7ac0f4b75a4f77a004f8963a269e616<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://data_classes/::1776193342
-Item.cs::CSharpScript::2471602715884373279::1776193342::0::1::::Item<>Resource<><>0<>0<><>::
+Item.cs::CSharpScript::2471602715884373279::1776255202::0::1::::Item<>Resource<><>0<>0<><>::
 lightManager.cs::CSharpScript::1765971051343363231::1776193342::0::1::::<><><>0<>0<><>::
 Prop.cs::CSharpScript::6002205987195829262::1774291231::0::1::::Prop<>Resource<><>0<>0<><>::
 RoomNode.cs::CSharpScript::7028102149673397261::1774291231::0::1::::RoomNode<>RefCounted<><>0<>0<><>::
 WorldObjectManager.cs::CSharpScript::5758821276252315723::1776193342::0::1::::WorldObjectManager<>RefCounted<><>0<>0<><>::
 ::res://data_classes/Inventory/::1776193342
-EquipmentInventory.cs::CSharpScript::3671649007292995114::1776193342::0::1::::<>Object<><>0<>0<><>::
+EquipmentInventory.cs::CSharpScript::3671649007292995114::1776253312::0::1::::<>Object<><>0<>0<><>::
 InventoryGrid.cs::CSharpScript::62519714299805753::1769794710::0::1::::<><><>0<>0<><>::
-::res://data_classes/items/::1776190377
+::res://data_classes/items/::1776250619
+Firearm.cs::CSharpScript::4235456929626742133::1776275209::0::1::::Firearm<>Item<><>0<>0<><>::
+RecoveryItem.cs::CSharpScript::8843693415391095751::1776250619::0::1::::RecoveryItem<>Item<><>0<>0<><>::
 ::res://resources/::1776193342
-::res://resources/items/::1776193342
+::res://resources/items/::1776275771
 TestConsumable.tres::Resource/Item::6594935086722934092::1776193342::0::1::::<><><>0<>0<><>::uid://h8n6dsotct5d::::res://scenes/GAME(main)/assets/ammoequipped.png<>res://data_classes/Item.cs
-TestLargeItem.tres::Resource/Item::8907118741021267154::1776193342::0::1::::<><><>0<>0<><>::uid://c1bdnrvxa1deo::::res://scenes/GAME(main)/assets/ak12onground.png<>uid://bbhi62t2j3n72::::res://data_classes/Item.cs<>uid://b7dh8s6eu0qm4::::res://scenes/GAME(main)/assets/ak12uptop.png
+TestFirearm.tres::Resource/Firearm::5670915448941724916::1776275771::0::1::::<><><>0<>0<><>::uid://b1lxmeqtmb438::::res://data_classes/items/Firearm.cs<>uid://boo7l8koh1ub::::res://scenes/GAME(main)/assets/50bmgonground.png<>uid://f0dgvv5auifm::::res://scenes/GAME(main)/assets/50bmguptop.png<>uid://ds34yhtmdkcsc::::res://resources/items/default/alice_soundz-gun-shot-sound-effect-224087.mp3
+TestLargeItem.tres::Resource/Item::8907118741021267154::1776250770::0::1::::<><><>0<>0<><>::uid://c1bdnrvxa1deo::::res://scenes/GAME(main)/assets/ak12onground.png<>uid://bbhi62t2j3n72::::res://data_classes/Item.cs<>uid://b7dh8s6eu0qm4::::res://scenes/GAME(main)/assets/ak12uptop.png
 TestSmallItem.tres::Resource/Item::3597044829945158008::1776193342::0::1::::<><><>0<>0<><>::uid://bb7is826bdkhn::::res://scenes/GAME(main)/assets/pistolonground.png<>uid://kas0lr3jnutg::::res://data_classes/Item.cs<>uid://b7dh8s6eu0qm4::::res://scenes/GAME(main)/assets/ak12uptop.png
+::res://resources/items/default/::1776275350
+alice_soundz-gun-shot-sound-effect-224087.mp3::AudioStreamMP3::8482267863085869742::1776275347::1776275350::1::::<><><>0<>0<>b9ca41c6508c3e0cd456d9a486a28e41<>res://.godot/imported/alice_soundz-gun-shot-sound-effect-224087.mp3-3b0197dfa28106b1114d7eb926868ad0.mp3str::
 ::res://resources/props/::1774291231
 Crate.tres::Resource/Prop::6340160098925685550::1774291231::0::1::::<><><>0<>0<><>::uid://crrrpq05bi10e::::res://data_classes/Prop.cs<>uid://84ppwekbdxqc::::res://scenes/GAME(main)/assets/Zrzut ekranu 2026-01-28 201912.png
-::res://scenes/::1776193342
+::res://scenes/::1776279908
 ::res://scenes/common/::1769794710
-::res://scenes/common/assets/::1776182418
+::res://scenes/common/assets/::1776250619
 Bez tytułu.png::CompressedTexture2D::4149080172420212884::1769794710::1769794927::1::::<><><>0<>0<>e248d7bcdae83aafebf86a53aae32630<>res://.godot/imported/Bez tytułu.png-66b232b9b3b16b39f106e1f5917399b8.ctex::
 blood_splatter.png::CompressedTexture2D::4792261093372719422::1769794711::1769794928::1::::<><><>0<>0<>fa4b75285afa092360ea74f9ec1fb007<>res://.godot/imported/blood_splatter.png-0e651fd00d4f7bb15d8b602a5251407b.ctex::
 fog_of_war.png::CompressedTexture2D::6188489338904226193::1769794711::1769794927::1::::<><><>0<>0<>65e2fe713d9d603e7ce2e0121699dff7<>res://.godot/imported/fog_of_war.png-8c947378630f331fadaafd9b471ebcae.ctex::
-radiallight.tres::GradientTexture2D::995091565592479098::1776182418::0::1::::<><><>0<>0<><>::
+radiallight.tres::GradientTexture2D::995091565592479098::1776250619::0::1::::<><><>0<>0<><>::
 room.png::CompressedTexture2D::4246520398609995733::1769794711::1769794928::1::::<><><>0<>0<>c281de3446d507fd515077ab49c24f05<>res://.godot/imported/room.png-4089b58fff7aa4b4e59f09f712e775af.ctex::
 testtiles.png::CompressedTexture2D::1238244458332271008::1774291231::1774293370::1::::<><><>0<>0<>361c1e0436e6c1c3ce4a30375c23ea6c<>res://.godot/imported/testtiles.png-43e5c2e5595e50c49cbee393b998b37d.ctex::
-tilescenetes.tres::TileSet::3748437247029965990::1776182418::0::1::::<><><>0<>0<><>::uid://rv2x8l4dxmqi::::res://scenes/common/assets/testtiles.png
+tilescenetes.tres::TileSet::3748437247029965990::1776250619::0::1::::<><><>0<>0<><>::uid://rv2x8l4dxmqi::::res://scenes/common/assets/testtiles.png
+::res://scenes/endingScenes/::1776283378
+DeadScene.cs::CSharpScript::4928147252798104044::1776283284::0::1::::<>Node<><>0<>0<><>::
+deadScene.tscn::PackedScene::5577539478025186266::1776283372::0::1::::<><><>0<>0<><>::uid://cchh4ohqm7pui::::res://scenes/endingScenes/DeadScene.cs<>uid://den3xriolr2gw::::res://scenes/endingScenes/Orbitron Black.otf
+EscapedScene.cs::CSharpScript::5694337275304527999::1776282994::0::1::::<>Control<><>0<>0<><>::
+escapedScene.tscn::PackedScene::862753772202058108::1776283378::0::1::::<><><>0<>0<><>::uid://den3xriolr2gw::::res://scenes/endingScenes/Orbitron Black.otf<>uid://cnem5x3m5k6j8::::res://scenes/endingScenes/EscapedScene.cs
+Orbitron Black.otf::FontFile::7468596391398366406::1776280295::1776280305::1::::<><><>0<>0<>8556084fd6db3a1642173c802816887e<>res://.godot/imported/Orbitron Black.otf-0e732f22d0f685dfb47e13b8eaa0a7e4.fontdata::
 ::res://scenes/entities/::1769794711
-::res://scenes/entities/player/::1776193342
-Player.cs::CSharpScript::2738409308847768686::1776193342::0::1::::<>CharacterBody2D<><>0<>0<><>::
-player.tscn::PackedScene::9043171343935103335::1776193342::0::1::::<><><>0<>0<><>::uid://bfarg3vfbvjm1::::res://scenes/entities/player/Player.cs<>uid://dncovm0fhvn4g::::res://scenes/entities/player/assets/run1.png<>uid://ogbaoxgjv20e::::res://scenes/common/assets/radiallight.tres<>uid://6ah8ocisg5mx::::res://scenes/entities/player/assets/footsteps/floor0.mp3
+::res://scenes/entities/player/::1776275771
+Player.cs::CSharpScript::2738409308847768686::1776283218::0::1::::<>CharacterBody2D<><>0<>0<><>::
+player.tscn::PackedScene::9043171343935103335::1776275771::0::1::::<><><>0<>0<><>::uid://bfarg3vfbvjm1::::res://scenes/entities/player/Player.cs<>uid://dncovm0fhvn4g::::res://scenes/entities/player/assets/run1.png<>uid://ogbaoxgjv20e::::res://scenes/common/assets/radiallight.tres<>uid://6ah8ocisg5mx::::res://scenes/entities/player/assets/footsteps/floor0.mp3
 ::res://scenes/entities/player/assets/::1776193342
 run1.png::CompressedTexture2D::8076733982590262028::1769794711::1769794927::1::::<><><>0<>0<>93d22d74f9082500a1d649638dc410c7<>res://.godot/imported/run1.png-44c3413a627b0d3fc46408f82777e908.ctex::
 run2.png::CompressedTexture2D::2641063335949514146::1769794711::1769794927::1::::<><><>0<>0<>8aa3efdcbd67caa8560ff5fed6b924a8<>res://.godot/imported/run2.png-4db8cb82a1ac95087942a540204327f4.ctex::
-::res://scenes/entities/player/assets/footsteps/::1776193342
+::res://scenes/entities/player/assets/footsteps/::1776275350
+alice_soundz-gun-shot-sound-effect-224087.mp3::AudioStreamMP3::5948785804282281985::1776275312::1776275350::1::::<><><>0<>0<>05d2ba0f53d511a0986846e7d3fb937c<>res://.godot/imported/alice_soundz-gun-shot-sound-effect-224087.mp3-62f76be559991f04004cfa7ddd6091fe.mp3str::
 floor0.mp3::AudioStreamMP3::2176338841731549943::1776193342::1776193348::1::::<><><>0<>0<>36f51150c0b6c0ef487892de936454f4<>res://.godot/imported/floor0.mp3-32f5eb24b2b1d329f5e845c531d89de2.mp3str::
-::res://scenes/GAME(main)/::1776193342
+::res://scenes/GAME(main)/::1776250619
 Testing.cs::CSharpScript::8297867015500305817::1776193342::0::1::::<>Node<><>0<>0<><>::
-testing.gdshader::Shader::5702378104861423797::1776182418::0::1::::<><><>0<>0<><>::
+testing.gdshader::Shader::5702378104861423797::1776250619::0::1::::<><><>0<>0<><>::
 testing.tscn::PackedScene::5133828066630398848::1776193342::0::1::::<><><>0<>0<><>::uid://d13tyfxx8qh56::::res://scenes/entities/player/player.tscn<>uid://dqhswl758ppl6::::res://scenes/GAME(main)/Testing.cs<>uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres<>uid://cmsvehb3jbbqq::::res://scenes/UI/HUD/hud.tscn
-::res://scenes/GAME(main)/assets/::1776193342
+::res://scenes/GAME(main)/assets/::1776250688
+50bmgonground.png::CompressedTexture2D::99997944707322537::1776250681::1776250681::1::::<><><>0<>0<>799bfda1306d982cbc3db8d29b7b30d6<>res://.godot/imported/50bmgonground.png-d8eacd382f7e312775b81be0cb87674d.ctex::
+50bmguptop.png::CompressedTexture2D::402747664578489078::1776250687::1776250688::1::::<><><>0<>0<>67386c41e75b7f956eef22760d9ca930<>res://.godot/imported/50bmguptop.png-3d1e676d942b732816ddb967c3c19114.ctex::
 ak12onground.png::CompressedTexture2D::6600021972412052370::1774291231::1774293370::1::::<><><>0<>0<>57030edc7838bc3d8d0d8bf42e7d1119<>res://.godot/imported/ak12onground.png-6969991aa26b7e775e1a67f9940ae2ff.ctex::
 ak12uptop.png::CompressedTexture2D::4639141757039252925::1774291231::1774293370::1::::<><><>0<>0<>2354b5085577b76d266724a4cb5d377f<>res://.godot/imported/ak12uptop.png-208d03811bf46208ee117416edec573e.ctex::
 ammoequipped.png::CompressedTexture2D::560291237905332939::1776193342::1776193348::1::::<><><>0<>0<>0fc2a8b4b7f2a0457dedc7edbc625b4a<>res://.godot/imported/ammoequipped.png-6ce667377817b97fb8133745f03f2c11.ctex::
@@ -51,6 +65,10 @@ Zrzut ekranu 2026-01-28 201912.png::CompressedTexture2D::2377037498871629030::17
 ::res://scenes/groundItem/::1776193342
 ItemNode2D.cs::CSharpScript::6800924132452127020::1776193342::0::1::::<>RigidBody2D<><>0<>0<><>::
 item_node_2d.tscn::PackedScene::5486120432848361136::1776193342::0::1::::<><><>0<>0<><>::uid://c35ohyhqqt1wa::::res://scenes/groundItem/ItemNode2D.cs
+::res://scenes/mainMenu/::1776280300
+MainMenu.cs::CSharpScript::3976219148870944924::1776278985::0::1::::<>Control<><>0<>0<><>::
+mainMenu.tscn::PackedScene::8334146395875148708::1776278941::0::1::::<><><>0<>0<><>::uid://bwwd0phbmn0fg::::res://scenes/mainMenu/MainMenu.cs<>uid://b1rbtnssdfcfl::::res://scenes/common/assets/room.png<>uid://8mskkkbyggcl::::res://scenes/mainMenu/Orbitron Black.otf
+Orbitron Black.otf::FontFile::2342115677671927223::1776277610::1776277610::1::::<><><>0<>0<>89f315c8a1355ed24c9db6d8b3c791fa<>res://.godot/imported/Orbitron Black.otf-2a61a61057db099b9d35f1b44bd417e7.fontdata::
 ::res://scenes/prop/::1774291231
 PropNode2D.cs::CSharpScript::8279184696142818682::1769794712::0::1::::<>RigidBody2D<><>0<>0<><>::
 prop_node_2d.tscn::PackedScene::3861553479148954310::1774291231::0::1::::<><><>0<>0<><>::uid://dp7q7yp4r2sde::::res://scenes/prop/PropNode2D.cs
@@ -68,16 +86,16 @@ VERTICALCUBICLES.tscn::PackedScene::6780362744795259494::1774291231::0::1::::<><
 VERT_HALLWAY.tscn::PackedScene::3358025297079181492::1774291231::0::1::::<><><>0<>0<><>::uid://btn1hjfnnadoo::::res://scenes/common/assets/tilescenetes.tres
 ::res://scenes/UI/::1776193342
 ::res://scenes/UI/equipmentSlots/::1776193342
-ConsumableSlot.cs::CSharpScript::-1::1776193342::0::1::::<>Panel<><>0<>0<><>::
+ConsumableSlot.cs::CSharpScript::2459374476762367947::1776193342::0::1::::<>Panel<><>0<>0<><>::
 consumableSlot.tscn::PackedScene::6674757857670794497::1776193342::0::1::::<><><>0<>0<><>::uid://bbblskj4jbr5t::::res://scenes/UI/equipmentSlots/ConsumableSlot.cs
 LargeItemSlot.cs::CSharpScript::2927074187632276359::1776193342::0::1::::<>Panel<><>0<>0<><>::
 largeItemSlot.tscn::PackedScene::9208070379408358227::1776193342::0::1::::<><><>0<>0<><>::uid://bhx5qp003ldd4::::res://scenes/UI/equipmentSlots/LargeItemSlot.cs
-SmallItemSlot.cs::CSharpScript::-1::1776193342::0::1::::<>Panel<><>0<>0<><>::
+SmallItemSlot.cs::CSharpScript::2996522006358760751::1776193342::0::1::::<>Panel<><>0<>0<><>::
 smallItemSlot.tscn::PackedScene::5045220758750131555::1776193342::0::1::::<><><>0<>0<><>::uid://bixsjrji4qxrb::::res://scenes/UI/equipmentSlots/SmallItemSlot.cs
 ::res://scenes/UI/HUD/::1776193342
 Hud.cs::CSharpScript::1763918545969582114::1776193342::0::1::::<>CanvasLayer<><>0<>0<><>::
 hud.tscn::PackedScene::5653548861131897356::1776193342::0::1::::<><><>0<>0<><>::uid://cnijlmnyuqe2p::::res://scenes/GAME(main)/testing.gdshader<>uid://0epql0axv5j7::::res://scenes/UI/HUD/Hud.cs<>uid://cajn3tdkyey3g::::res://scenes/common/assets/blood_splatter.png<>uid://d4gptrl6u1q4j::::res://scenes/UI/equipmentSlots/largeItemSlot.tscn<>uid://cd47bwnjk6fct::::res://scenes/UI/equipmentSlots/smallItemSlot.tscn<>uid://c2dkj0pkjnprl::::res://scenes/UI/equipmentSlots/consumableSlot.tscn<>uid://dtk4272m2wt70::::res://scenes/UI/HUD/src/Bez tytułu.png
-::res://scenes/UI/HUD/src/::1776193342
+::res://scenes/UI/HUD/src/::1776193348
 Bez tytułu.png::CompressedTexture2D::8515304590007293637::1776193342::1776193348::1::::<><><>0<>0<>c446f91d2aeb8197f491b93b094ed6d4<>res://.godot/imported/Bez tytułu.png-79e0e2ca17f05fe60d2feace8a2fbbb7.ctex::
 hud.gdshader::Shader::6070174550096246693::1776193342::0::1::::<><><>0<>0<><>::
 overbar.png::CompressedTexture2D::5908716537450551688::1776193342::1776193348::1::::<><><>0<>0<>ec826a3aa6214c03fedb85d35c36672f<>res://.godot/imported/overbar.png-4fe71a131664d7ae06bd16c64a92056c.ctex::

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://mj6oto3tfiae"]
+
+[ext_resource type="FontFile" uid="uid://den3xriolr2gw" path="res://scenes/endingScenes/Orbitron Black.otf" id="1_l81ms"]
+[ext_resource type="Script" uid="uid://cnem5x3m5k6j8" path="res://scenes/endingScenes/EscapedScene.cs" id="1_o3e16"]
+
+[node name="DeadScene" type="Control" unique_id=531048364]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o3e16")
+
+[node name="Button" type="Button" parent="." unique_id=1662230010]
+layout_mode = 0
+offset_left = 783.0
+offset_top = 807.0
+offset_right = 1099.0
+offset_bottom = 914.0
+tooltip_text = "they're lying"
+theme_override_fonts/font = ExtResource("1_l81ms")
+theme_override_font_sizes/font_size = 61
+text = "Quit"
+
+[node name="Label" type="Label" parent="." unique_id=1138484079]
+layout_mode = 0
+offset_top = 130.0
+offset_right = 1921.0
+offset_bottom = 738.0
+tooltip_text = "they're lying"
+theme_override_fonts/font = ExtResource("1_l81ms")
+theme_override_font_sizes/font_size = 43
+text = "Thank you for providing data for the 
+Vacuum Obfuscation Index Decoder
+algorithm.
+
+This software is highly confidential and all of what you've seen
+ is subject to change and further development. The data you've
+provided will aid us in making this algorithm better at predicting
+and managing space generation.
+
+Any and all side effects caused by exposure are IIIIIIIIIIIIIIIIII
+
+Any and all data leaks will result in immideate termination
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1

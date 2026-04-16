@@ -94,4 +94,28 @@
 
             return list[activeSlot.Value];
         }
+
+        public bool RemoveActiveItem()
+        {
+            if (!slots.ContainsKey(activeSlot.Key))
+                return false;
+
+            var list = slots[activeSlot.Key];
+
+            if (activeSlot.Value < 0 || activeSlot.Value >= list.Count)
+                return false;
+
+            list.RemoveAt(activeSlot.Value);
+            if (list.Count == 0)
+            {
+                activeSlot = default;
+            }
+            else if (activeSlot.Value >= list.Count)
+            {
+                activeSlot = new(activeSlot.Key, list.Count - 1);
+            }
+
+            EmitSignal(SignalName.InventoryChanged);
+            return true;
+        }
     }
