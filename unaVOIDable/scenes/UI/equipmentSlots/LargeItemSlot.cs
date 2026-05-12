@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+//!Panel control for displaying large slots.
 public partial class LargeItemSlot : Panel
 {
 	[Export]

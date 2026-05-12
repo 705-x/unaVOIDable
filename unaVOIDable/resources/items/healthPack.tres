@@ -1,11 +1,26 @@
 [gd_resource type="Resource" script_class="RecoveryItem" format=3 uid="uid://caktkxx4ylgwl"]
 
 [ext_resource type="Script" uid="uid://dx87lrjj615mx" path="res://data_classes/items/RecoveryItem.cs" id="1_j4jv8"]
+[ext_resource type="Texture2D" uid="uid://d1vjuevsya75x" path="res://resources/items/default/medkit.png" id="1_n4x4y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n4x4y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n4x4y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_j4jv8")
 healthReplenish = 50
 staminaReplenish = 0
+useAnimation = SubResource("SpriteFrames_n4x4y")
+Icon = ExtResource("1_n4x4y")
 equipmentType = 4
 uses = 3
+spawnChance = 100
 metadata/_custom_type_script = "uid://dx87lrjj615mx"

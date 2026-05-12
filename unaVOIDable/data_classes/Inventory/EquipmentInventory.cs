@@ -3,20 +3,19 @@
     using System.Collections.Generic;
     using System.Runtime.CompilerServices;
 
-
+    //!Class handling "equipped" slots from which the player can select their current item.
 
     public partial class EquipmentInventory:GodotObject
     {
-        //EquipmentType is an enum of which slot it should be equippable to, declared in Item.cs
+        
         [Signal]
-        public delegate void InventoryChangedEventHandler();    
+        public delegate void InventoryChangedEventHandler();//!<Event handler for when the inventory changes. Gets sent to Hud in order to draw all changes onscreen.
         [Signal]
-        public delegate void DropItemEventHandler(Item item);
-        //Slot needs to be converted from it's enum to int, since my custon enum cannot be conv.
-        //to Godot.Variant and Godot doesn't accept that.
-        public Dictionary<EquipmentType, List<Item>> slots;
-        public KeyValuePair<EquipmentType, int> activeSlot;
-        private Dictionary<EquipmentType, int> slotLimits = new()
+        public delegate void DropItemEventHandler(Item item);//!<Event handler for when an item gets dropped. Gets sent to the WorldObjectEventHandler, to spawn the item in-world.
+        
+        public Dictionary<EquipmentType, List<Item>> slots;//!<EquipmentType is an enum of which slot it should be equippable to, declared in Item.cs. Current state of each equipmentSlot.
+        public KeyValuePair<EquipmentType, int> activeSlot;//!<EquipmentType is an enum of which slot it should be equippable to, declared in Item.cs. The current slot used by the player - determines what item should be used.
+        private Dictionary<EquipmentType, int> slotLimits = new()//!<EquipmentType is an enum of which slot it should be equippable to, declared in Item.cs. slot limits for each slot type. I have no other idea on how to do this lul
         {
             { EquipmentType.HeadGear, 1 },
             { EquipmentType.Armor, 1 },
@@ -24,21 +23,21 @@
             { EquipmentType.LargeItem, 1 },
             { EquipmentType.SmallItem, 2 },
             { EquipmentType.Consumable, 2 }
-        };  
-
-        //slot limits for each slot type. I have no other idea on how to do this lul
+        }; 
         public EquipmentInventory()
         {   
+            //!Declares a new list in each of the slots, so none of them throw a nullrefExcept. Eh.
             slots = new();
             foreach (var type in Enum.GetValues(typeof(EquipmentType)))
             {
                 slots[(EquipmentType)type] = new();
             }
-            //Declares a new list in each of the slots, so none of them throw a nullrefExcept. Eh.
+            
 
         }
         public bool Equip(EquipmentType slot, Item item)
         {
+            //!Equips the item in the first free slot in a slot that corresponds to it's type. If no slots are free. returns false.
             var items = slots[slot];    
 
             if (items.Count >= slotLimits[slot])
@@ -57,6 +56,7 @@
 
         public bool Drop(EquipmentType slot, int which)
         {
+            //!Drops the ActiveItem.
             var item = slots[slot];
 
             if (item.Count == 0)
@@ -84,6 +84,7 @@
 
         public Item getActiveItem()
         {
+            //!Returns the current ActiveItem.
             if (!slots.ContainsKey(activeSlot.Key))
                 return null;
 
@@ -97,6 +98,7 @@
 
         public bool RemoveActiveItem()
         {
+            //!Removes the current ActiveItem.
             if (!slots.ContainsKey(activeSlot.Key))
                 return false;
 

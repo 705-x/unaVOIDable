@@ -8,5 +8,5 @@ script = ExtResource("1_di8m2")
 texture = ExtResource("2_norwy")
 Mass = 90.0
 Tall = true
-spawnChance = 100
+spawnChance = 10
 metadata/_custom_type_script = "uid://crrrpq05bi10e"

@@ -9,6 +9,8 @@ public enum FireMode
     FullAuto
 }
 
+
+//! Resource derived from the Item class.
 [GlobalClass]
 public partial class Firearm : Item
 {
@@ -35,7 +37,7 @@ public partial class Firearm : Item
     public AudioStream shotSound;
 
     [Export]
-    public float baseSpread = 5f;      //in degrees
+    public float baseSpread = 5f;      //!< Expressed in degrees
     [Export]
     public float adsSpreadMultiplier = 0.3f;
 

@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+//!Panel control for displaying consumable slots.
 public partial class ConsumableSlot : Panel
 {
 	[Export]

@@ -1,10 +1,25 @@
 [gd_resource type="Resource" script_class="RecoveryItem" format=3 uid="uid://mwi2jg8hc6ts"]
 
+[ext_resource type="Texture2D" uid="uid://crl34qbbhq4u8" path="res://resources/items/default/staminapack.png" id="1_3n47a"]
 [ext_resource type="Script" uid="uid://dx87lrjj615mx" path="res://data_classes/items/RecoveryItem.cs" id="1_6dr3n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yk7b7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3n47a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_6dr3n")
 healthReplenish = 0
 staminaReplenish = 50
+useAnimation = SubResource("SpriteFrames_yk7b7")
+Icon = ExtResource("1_3n47a")
 equipmentType = 5
+spawnChance = 100
 metadata/_custom_type_script = "uid://dx87lrjj615mx"

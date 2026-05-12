@@ -1,6 +1,6 @@
 using Godot;
 using System;
-
+//!Panel control for displaying small slots.
 public partial class SmallItemSlot : Panel
 {
 	[Export]

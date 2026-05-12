@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+//!A start scene for the game. Contains a button to quit and start the game.
+
 public partial class MainMenu : Control
 {
 	// Called when the node enters the scene tree for the first time.

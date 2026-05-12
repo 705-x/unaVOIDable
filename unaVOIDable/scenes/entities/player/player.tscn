@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d13tyfxx8qh56"]
 
 [ext_resource type="Script" uid="uid://bfarg3vfbvjm1" path="res://scenes/entities/player/Player.cs" id="1_abrql"]
-[ext_resource type="Texture2D" uid="uid://dncovm0fhvn4g" path="res://scenes/entities/player/assets/run1.png" id="2_abrql"]
+[ext_resource type="Texture2D" uid="uid://dncovm0fhvn4g" path="res://scenes/entities/player/assets/run1.png" id="2_nh4ur"]
 [ext_resource type="Texture2D" uid="uid://ogbaoxgjv20e" path="res://scenes/common/assets/radiallight.tres" id="3_58kc7"]
 [ext_resource type="AudioStream" uid="uid://6ah8ocisg5mx" path="res://scenes/entities/player/assets/footsteps/floor0.mp3" id="4_nh4ur"]
 
@@ -13,7 +13,7 @@ height = 74.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_abrql")
+"texture": ExtResource("2_nh4ur")
 }],
 "loop": true,
 "name": &"default",
@@ -40,6 +40,7 @@ position = Vector2(23.635, 21.38)
 limit_enabled = false
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1019681155]
+position = Vector2(1, -1)
 blend_mode = 2
 shadow_enabled = true
 shadow_filter_smooth = 6.3

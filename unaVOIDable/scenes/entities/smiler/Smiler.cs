@@ -1,8 +1,11 @@
 using Godot;
 using System;
 
+
+//! Class for the Smiler enemy. Currently isn't working as expected, mainly due to pathfinding performance problems.
 public partial class Smiler : CharacterBody2D
 {
+	
 	[Export] public float Speed = 400.0f;
     [Export] public float Damage = 10.0f;
     [Export] public float AttackRange = 500.0f;

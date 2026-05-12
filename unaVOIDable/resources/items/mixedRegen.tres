@@ -1,8 +1,23 @@
 [gd_resource type="Resource" script_class="RecoveryItem" format=3 uid="uid://mwmxrxoeujkf"]
 
 [ext_resource type="Script" uid="uid://dx87lrjj615mx" path="res://data_classes/items/RecoveryItem.cs" id="1_h1dkw"]
+[ext_resource type="Texture2D" uid="uid://bd3edt5hjb6yc" path="res://resources/items/default/both.png" id="1_ro8hb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dtirs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ro8hb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_h1dkw")
+useAnimation = SubResource("SpriteFrames_dtirs")
+Icon = ExtResource("1_ro8hb")
 equipmentType = 5
+spawnChance = 100
 metadata/_custom_type_script = "uid://dx87lrjj615mx"

@@ -1,0 +1,26 @@
+var annotated_dup =
+[
+    [ "ConsumableSlot", "class_consumable_slot.html", "class_consumable_slot" ],
+    [ "DeadScene", "class_dead_scene.html", "class_dead_scene" ],
+    [ "EntityManager", "class_entity_manager.html", "class_entity_manager" ],
+    [ "EquipmentInventory", "class_equipment_inventory.html", "class_equipment_inventory" ],
+    [ "EscapedScene", "class_escaped_scene.html", "class_escaped_scene" ],
+    [ "Firearm", "class_firearm.html", "class_firearm" ],
+    [ "Hud", "class_hud.html", "class_hud" ],
+    [ "InventoryGrid", "class_inventory_grid.html", "class_inventory_grid" ],
+    [ "Item", "class_item.html", "class_item" ],
+    [ "ItemNode2D", "class_item_node2_d.html", "class_item_node2_d" ],
+    [ "LargeItemSlot", "class_large_item_slot.html", "class_large_item_slot" ],
+    [ "LightManager", "class_light_manager.html", "class_light_manager" ],
+    [ "MainMenu", "class_main_menu.html", "class_main_menu" ],
+    [ "Player", "class_player.html", "class_player" ],
+    [ "Prop", "class_prop.html", "class_prop" ],
+    [ "PropNode2D", "class_prop_node2_d.html", "class_prop_node2_d" ],
+    [ "RecoveryItem", "class_recovery_item.html", "class_recovery_item" ],
+    [ "RoomNode", "class_room_node.html", "class_room_node" ],
+    [ "SmallItemSlot", "class_small_item_slot.html", "class_small_item_slot" ],
+    [ "Smiler", "class_smiler.html", "class_smiler" ],
+    [ "Testing", "class_testing.html", "class_testing" ],
+    [ "Voideye", "class_voideye.html", "class_voideye" ],
+    [ "WorldObjectManager", "class_world_object_manager.html", "class_world_object_manager" ]
+];

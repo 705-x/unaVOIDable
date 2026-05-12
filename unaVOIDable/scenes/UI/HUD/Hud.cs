@@ -2,17 +2,24 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+//! Handles all player HUD rendering including inventory slots, stamina bar, damage effects, and active item highlighting.
 public partial class Hud : CanvasLayer
 {
+	Sprite2D bloodSprite; //!< Blood overlay sprite used for screen damage effects.
 
-	Sprite2D bloodSprite;	
-	TextureProgressBar healthBar;
-	TextureProgressBar staminaBar;
-	ShaderMaterial material;
-	Player player;
-	EquipmentInventory playerInventory;
-	Dictionary<EquipmentType, List<Control>> uiSlots = new();
+	TextureProgressBar healthBar; //!< UI health bar reference.
 
+	TextureProgressBar staminaBar; //!< UI stamina bar reference.
+
+	ShaderMaterial material; //!< Post-processing material used for screen effects.
+
+	Player player; //!< Reference to the player instance.
+
+	EquipmentInventory playerInventory; //!< Reference to the player's inventory.
+
+	Dictionary<EquipmentType, List<Control>> uiSlots = new(); //!< Dictionary mapping equipment types to their corresponding UI slot controls.
+
+	//! Initializes HUD references, connects player signals, builds slot mappings, and draws the initial HUD state.
 	public override void _Ready()
 	{
 		material = (ShaderMaterial)GetNode<ColorRect>("ColorRect").Material;
@@ -44,14 +51,20 @@ public partial class Hud : CanvasLayer
 
 		DrawHUD();
 	}
+
+	//! Handles per-frame HUD updates.
 	public override void _Process(double delta)
 	{
 	}
 
+
+	//! Updates inventory-related UI elements.
 	public void DrawInventory()
 	{
 		
 	}
+
+	//! Draws equipped items, updates active slot highlighting, and refreshes item icons.
 	public void DrawHUD()
 	{
 		foreach(var kvp in playerInventory.slots)
@@ -94,13 +107,15 @@ public partial class Hud : CanvasLayer
 
 		//this draws slots and each selected slot
 	}
+
+	//! Applies visual damage effects based on the player's current health.
 	public void DrawDamage(int hp)
 	{
 		material.SetShaderParameter("saturation", hp/100.0f);
 		float alpha = 0.5f - (hp / 100.0f);
 		bloodSprite.SelfModulate = bloodSprite.SelfModulate with { A = alpha };
 	}
-
+	//! Updates the stamina bar value.
 	public void DrawStamina(float stamina)
 	{
 		staminaBar.Value = stamina;

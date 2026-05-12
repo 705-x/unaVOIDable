@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
+//!Currently unimplemented.
+
 public class InventoryGrid
 {
     public int slotAmount;

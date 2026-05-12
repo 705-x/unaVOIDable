@@ -1,9 +1,11 @@
 using Godot;
 using System;
 
+
+//! Class handling the logic for when the player finishes the game. Contains a button to quit the game.
 public partial class EscapedScene : Control
 {
-	// Called when the node enters the scene tree for the first time.
+	
 	Button quit;
 	public override void _Ready()
 	{

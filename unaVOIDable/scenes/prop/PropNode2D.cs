@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+//!The physical body of of a prop in the world. Takes it's corresponding Resource and uses it as a blueprint to spawn the prop.
 public partial class PropNode2D : RigidBody2D
 {
 	public Prop propData;
@@ -9,7 +10,7 @@ public partial class PropNode2D : RigidBody2D
 	[Export]
 	private CollisionPolygon2D shape;
 	[Export]
-	private LightOccluder2D occluder;
+	private LightOccluder2D occluder; //!This class later generates a occluder2D based on the sprite's shape.
 
 	public PropNode2D(){
 		
@@ -36,6 +37,7 @@ public partial class PropNode2D : RigidBody2D
 
 	public static CollisionPolygon2D CreateCollisionPoly(Texture2D texture)
 	{
+		//!This Generates the collision polygon based on sprite shape. Uses it also to create the LightOccluder's shape.
 		var image = texture.GetImage();
 		Bitmap bitmap = new();
 

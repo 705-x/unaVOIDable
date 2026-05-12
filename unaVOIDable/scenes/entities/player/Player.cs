@@ -1,77 +1,121 @@
-	using Godot;
+using Godot;
+
+//! Main player controller class. Handles player movement, stamina, sliding, inventory interaction, item usage, audio playback, aiming, health management, and world interaction.
+public partial class Player : CharacterBody2D
+{
+	//-- Signals --//
+
+	[Signal]
+	public delegate void OpenedInventoryEventHandler(); //!< Emitted when the inventory is opened.
+
+	[Signal]
+	public delegate void ClosedInventoryEventHandler(); //!< Emitted when the inventory is closed.
+
+	[Signal]
+	public delegate void SelectedSlotEventHandler(); //!< Emitted when the active inventory slot changes.
+
+	[Signal]
+	public delegate void HealthChangedEventHandler(int newHealth); //!< Emitted whenever the player's health changes.
+
+	[Signal]
+	public delegate void StaminaChangedEventHandler(float stamina); //!< Emitted whenever the player's stamina changes.
 
 
-	public partial class Player : CharacterBody2D
+	/// <summary>
+	/// Represents the current slide state of the player.
+	/// </summary>
+	public enum slideState
 	{
-		[Signal]
-		public delegate void OpenedInventoryEventHandler();
-
-		[Signal]
-		public delegate void ClosedInventoryEventHandler();
-
-		[Signal]
-		public delegate void SelectedSlotEventHandler();
-
-		[Signal]
-		public delegate void HealthChangedEventHandler(int newHealth);
-		[Signal]
-		public delegate void StaminaChangedEventHandler(float stamina);
+		Sliding,   //!< Player is currently sliding.
+		OnCooldown //!< Slide is unavailable due to cooldown.
+	}
 
 
-		public enum slideState
-		{
-			Sliding,
-			OnCooldown
-		}
+	//-- Player Input --//
 
-		//--Player Input--//
-		public Vector2 movementInput;
-		public bool isRunning;
-		public bool isCrouched;
-		public bool slidePressed;
-		public bool slideHeld;
-		public bool isHoldingUse;
-		public bool isHoldingSecondaryUse;
+	public Vector2 movementInput; //!< Current movement direction input.
 
-		//--Stats--//
-		private float hp = 100;
-		AnimatedSprite2D playerSprite = new();
+	public bool isRunning; //!< Whether the player is sprinting.
 
-		//--Movement stats / Physics--//
-		public float Friction = 2500.0f;
-		public float Acceleration = 2500.0f;
-		public float maxSpeed = 400.0f;
-		public float PushStrength = 500.0f;
-		public bool isSliding = false;
-		private float slideCooldown = 2f; 
-		private float slideCooldownTimer = 0f;
+	public bool isCrouched; //!< Whether the player is crouched.
 
-		//--Stamina--//
-		private float stamina = 100f;
-		private float maxStamina = 100f;
-		private float staminaDrain = 40f;    
-		private float staminaRegen = 25f;    
-		private float staminaRegenDelay = 0.5f; 
-		private float staminaRegenTimer = 0f;
+	public bool slidePressed; //!< Whether the slide button was pressed this frame.
+
+	public bool slideHeld; //!< Whether the slide button is currently held.
+
+	public bool isHoldingUse; //!< Whether the primary use button is held.
+
+	public bool isHoldingSecondaryUse; //!< Whether the secondary use button is held.
 
 
-		//--Footsteps--//
-		private float footstepTimer = 0f;
-		private float baseStepInterval = 0.5f; 
+	//-- Stats --//
 
-		
+	private float hp = 100; //!< Current player health.
 
-		//--References/Inventory--//
-		public EquipmentInventory playerInventory;
-		public AudioStreamPlayer2D playerSounds;
-		public AudioStreamPlayer2D shotSounds;
-		public AudioStreamPlayer2D animationSounds;
-		public WorldObjectManager worldObjectManager;
-		public TileMapLayer tileLayer;
-		private Camera2D playerCam;
-		public PointLight2D flashLight;	
-		public Node2D handPivot;
-		public AnimatedSprite2D itemSprite;
+	AnimatedSprite2D playerSprite = new(); //!< Reference to the player sprite.
+
+
+	//-- Movement stats / Physics --//
+
+	public float Friction = 2500.0f; //!< Base friction applied to movement.
+
+	public float Acceleration = 2500.0f; //!< Base acceleration value.
+
+	public float maxSpeed = 400.0f; //!< Base movement speed.
+
+	public float PushStrength = 500.0f; //!< Force applied to pushed rigid bodies.
+
+	public bool isSliding = false; //!< Whether the player is currently sliding.
+
+	private float slideCooldown = 2f; //!< Delay before sliding can be used again.
+
+	private float slideCooldownTimer = 0f; //!< Current slide cooldown timer.
+
+
+	//-- Stamina --//
+
+	private float stamina = 100f; //!< Current stamina value.
+
+	private float maxStamina = 100f; //!< Maximum stamina.
+
+	private float staminaDrain = 40f; //!< Stamina drained per second while sprinting.
+
+	private float staminaRegen = 25f; //!< Stamina regenerated per second.
+
+	private float staminaRegenDelay = 0.5f; //!< Delay before stamina regeneration begins.
+
+	private float staminaRegenTimer = 0f; //!< Current stamina regeneration timer.
+
+
+	//-- Footsteps --//
+
+	private float footstepTimer = 0f; //!< Timer controlling footstep playback.
+
+	private float baseStepInterval = 0.5f; //!< Base interval between footsteps.
+
+
+	//-- References / Inventory --//
+
+	public EquipmentInventory playerInventory; //!< Player inventory instance.
+
+	public AudioStreamPlayer2D playerSounds; //!< Audio player used for footsteps.
+
+	public AudioStreamPlayer2D shotSounds; //!< Audio player used for weapon sounds.
+
+	public AudioStreamPlayer2D animationSounds; //!< Audio player used for animation sounds.
+
+	public WorldObjectManager worldObjectManager; //!< Handles spawning world items.
+
+	public TileMapLayer tileLayer; //!< Tilemap layer reference used for coordinate conversion.
+
+	private Camera2D playerCam; //!< Main player camera.
+
+	public PointLight2D flashLight; //!< Player flashlight / muzzle flash light.
+
+	public Node2D handPivot; //!< Pivot point used for held item rotation.
+
+	public AnimatedSprite2D itemSprite; //!< Sprite displaying the currently equipped item.
+
 
 		/*the player needs to know the WorldObjectManager and tileMapLayer in order to kinda connect those.
 		WorldObjectManager needs to have the position and angle at which to drop an item and having
@@ -80,6 +124,7 @@
 		*/
 		public override void _Ready()
 		{
+			//! Initializes references, inventory setup, signals, flashlight setup, and default active inventory slot.
 			playerCam = GetNode<Camera2D>("Camera");
 			flashLight = GetNode<PointLight2D>("PointLight2D");
 			playerSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
@@ -88,14 +133,16 @@
 			animationSounds = GetNode<AudioStreamPlayer2D>("AnimationSounds");
 			handPivot = GetNode<Node2D>("HandPivot");
 			itemSprite = GetNode<AnimatedSprite2D>("HandPivot/itemsprite");
+			itemSprite.Scale = new(2.0f,2.0f);
 			playerInventory = new();
 			playerInventory.DropItem += OnDropItem;
-			flashLight.Position = this.Position;
+			flashLight.Position = this.Position - new Vector2(25,0);
 			isSliding = false;
 			playerInventory.activeSlot = new(EquipmentType.LargeItem, 0);
 			EmitSignal(SignalName.SelectedSlot);
 			EmitSignal(SignalName.StaminaChanged, stamina);
 		}
+		//! Handles player input, item interaction, inventory switching, camera movement, aiming, and item usage logic.
 		public override void _Process(double delta)
 		{
 			//--inputs--//
@@ -209,7 +256,7 @@
 			Vector2 mousePos = GetViewport().GetMousePosition() - GetViewport().GetVisibleRect().Size * 0.5f;
 			//this is the mousePosition minus Viewport/2, so the mouse's 0,0 coords are in the center.
 			GlobalRotation = (GetGlobalMousePosition() - GlobalPosition).Angle();
-			GlobalRotation -= Mathf.Pi/2;	
+	
 			playerCam.GlobalPosition = (GlobalPosition + mousePos * 0.2f);
 
 
@@ -259,6 +306,7 @@
 			
 				
 		}
+		//! Handles movement physics, stamina updates, footsteps, collision pushing, and slide reset logic.
 		public override void _PhysicsProcess(double delta)
 		{
 			
@@ -280,8 +328,10 @@
 				}
 			}
 		}
+		//! Calculates and applies movement velocity based on movement state, sprinting, crouching, sliding, and friction.
 		private void ResolveMovement(double delta)
 		{
+			
 			float calcMaxSpeed = maxSpeed;
 			float calcAccel = Acceleration;
 			float calcFriction = Friction;
@@ -350,8 +400,10 @@
 			//pretty self explanatory
 
 		}
+		//! Handles stamina draining while sprinting and regeneration while resting.
 		private void HandleStamina(double delta)
 		{
+			
 			if (isRunning && movementInput != Vector2.Zero && stamina > 0f)
 			{
 				stamina -= staminaDrain * (float)delta;
@@ -381,8 +433,10 @@
 			}
 			
 		}
+		//! Plays footstep sounds depending on player movement state.
 		private void HandleFootsteps(double delta)
 		{
+			
 			if (movementInput == Vector2.Zero && Velocity.Length() < 20f || isSliding)
 			{
 				playerSounds.Stop();
@@ -414,8 +468,10 @@
 				footstepTimer = stepInterval;
 			}
 		}
+		//! Applies damage to the player and triggers death if health reaches zero.
 		public void Damaged(int damage)
 		{
+			
 			hp -= damage;
 			EmitSignal(SignalName.HealthChanged, hp);
 			if(hp <= 0)
@@ -423,8 +479,10 @@
 				GetTree().ChangeSceneToFile("res://scenes/endingScenes/deadScene.tscn");
 			}
 		}
+		//! Applies damage and knockback force to the player.
 		public void Damaged(int damage, Vector2 force)
 		{
+			
 			hp -= damage;
 			Velocity += force;
 			EmitSignal(SignalName.HealthChanged, hp);
@@ -435,8 +493,10 @@
 			}
 			//thought it'd be funny if the player could be flung around by strong attacks.
 		}
+		//! Restores player health up to the maximum value.
 		public void Heal(int amount)
 		{
+			
 			hp += amount;
 
 			if (hp > 100)
@@ -444,8 +504,10 @@
 
 			EmitSignal(SignalName.HealthChanged, hp);
 		}
+		//! Restores player stamina up to the maximum value.
 		public void AddStamina(float amount)
 		{
+			
 			stamina += amount;
 			if (stamina > maxStamina)
 				stamina = maxStamina;
@@ -453,6 +515,8 @@
 			EmitSignal(SignalName.StaminaChanged, stamina);
 		}
 		//these three methods are for items to be able to interact with hp and stamina of the player
+
+		//! Spawns a dropped item into the world in front of the player.
 		public void OnDropItem(Item item)
 		{
 			Vector2 size = playerSprite.SpriteFrames.GetFrameTexture(playerSprite.Animation, playerSprite.Frame).GetSize();
@@ -465,12 +529,14 @@
 			worldObjectManager.SpawnItem(
 				tileLayer.LocalToMap(pos),
 				item,
-				GlobalRotation,
+				GlobalRotation -= Mathf.Pi/2,
 				force
 			);
 		}
+		//! Plays a randomized footstep sound at the specified volume.
 		private void PlayFootstep(float volumeDb)
 		{
+			
 			GD.Print("footstep");
 			//debug
 			if (playerSounds.Stream == null)
@@ -480,28 +546,36 @@
 			playerSounds.PitchScale = (float)GD.RandRange(0.8f, 1.2f); 
 			playerSounds.Play();
 		}
+		//! Plays a weapon firing sound.
 		public void PlayShot(float volumeDb, AudioStream stream)
 		{
+			
 			shotSounds.Stream = stream;
 			shotSounds.VolumeDb = volumeDb;
 			shotSounds.PitchScale = (float)GD.RandRange(0.8f, 1.2f); 
 			shotSounds.Play();
 		}
+		//! Plays a generic animation-related sound effect.
 		public void PlayAnimationSound(float volumeDb, AudioStream stream)
 		{
+			
 			shotSounds.Stream = stream;
 			shotSounds.VolumeDb = volumeDb;
 			shotSounds.PitchScale = (float)GD.RandRange(0.95f, 1.1f); 
 			shotSounds.Play();
 		}
+		//!this is just a wrapper which connects this so the Item can cast this from within itself. for entire logic, see playerInventory.RemoveActiveItem
 		public void RemoveActiveItem()
 		{
+			
 			playerInventory.RemoveActiveItem();
 			//this is just a wrapper which connects this so the Item can cast this from within itself.
 			//for entire logic, see playerInventory.RemoveActiveItem
 		}
+		
 		public async void PlayItemAnimation(string animationName = "use")
 		{
+			
 			if (itemSprite == null || itemSprite.SpriteFrames == null)
 				return;
 			//if item doesn't have anim it just skips this function
@@ -519,8 +593,10 @@
 
 			//plays, then waits for the end of the animation, then stops. Self-explanatory
 		}
+		//!Plays the item's designated animation.
 		public Vector2 GetAimDirection()
 		{
+			//! Returns a normalized direction vector from the player toward the mouse cursor.
 			return (GetGlobalMousePosition() - GlobalPosition).Normalized();
 		}
 	}

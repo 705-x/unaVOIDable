@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="Prop" format=3 uid="uid://dktacymtxmetu"]
 
 [ext_resource type="Script" uid="uid://crrrpq05bi10e" path="res://data_classes/Prop.cs" id="1_tsxs5"]
+[ext_resource type="Texture2D" uid="uid://cn5ngomj7mvbv" path="res://scenes/GAME(main)/assets/sprite.png" id="2_q4hkd"]
 
 [resource]
 script = ExtResource("1_tsxs5")
+texture = ExtResource("2_q4hkd")
 Mass = 900.0
 spawnChance = 10
 metadata/_custom_type_script = "uid://crrrpq05bi10e"

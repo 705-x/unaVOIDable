@@ -3,22 +3,23 @@ using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+//!Class used for the main game logic. Contains methods for generating rooms, floors, and connect all the Manager classes together.
 public partial class Testing : Node
 {	
-	TileMapLayer tileLayer;
-	Player player;
-	Array<PackedScene> roomArray = [];
-	PackedScene SEQUENCE_CHAIN;
-	HashSet<Vector2I> usedCells = new();
-	System.Collections.Generic.Dictionary<PackedScene, Vector2I> roomSizeCache = new();
-	LightManager lightManager;
-	WorldObjectManager objManager;
-	EntityManager entityManager;
+	TileMapLayer tileLayer; //!<tileLayer TileLayer of the parent node. Needed for map to global conversion.
+	Player player; //!< Parent node to which entities will be added.
+	Array<PackedScene> roomArray = []; //!<Array of
+	PackedScene SEQUENCE_CHAIN;//!<The starting, empty room.
+	HashSet<Vector2I> usedCells = new();//!<Hashset of 
+	System.Collections.Generic.Dictionary<PackedScene, Vector2I> roomSizeCache = new();//!< Caches room sizes. These sizes get accessed in getRoomSize.
+	LightManager lightManager;//!<See LightManager.
+	WorldObjectManager objManager;//!<See WorldObjectManager.
+	EntityManager entityManager;//!< See EntityManager.
 	Random rand = new();
-	int GeneratedRoomCounter = 0;
+	int GeneratedRoomCounter = 0;//!< Amount of generated rooms. Mainly for debug.
 	public override void _Ready()
 	{
+		//! Defines all class variables and generates the floor. Also initializes timers for functions which needs calling periodically.
 		
 		tileLayer = GetNode<TileMapLayer>("TileMapLayer");
 		lightManager = new(this, tileLayer);
@@ -60,6 +61,7 @@ public partial class Testing : Node
 	}
 	public void GenerateFloor(int howMany, int blockinessCoeff, int emptinessCoeff)
 	{
+		//!Floor generation method.
     	var graph = GenerateFloorGraph(howMany, blockinessCoeff);
 
     	RoomNode start = graph[0];
@@ -142,8 +144,11 @@ public partial class Testing : Node
 	}
 	public List<RoomNode> GenerateFloorGraph(int count, int blockinessCoeff)
 	{
-		//BlockinessCoeff is the chance to generate a connected room. The smaller it is - the more
-		//linear the level will be(but also less rooms will gen, this should be fixed)
+		//!See RoomNode. Generates roomNodes and connects them by adding a random room to each room's Connections array.
+		//!Connection has a chance of 1 in x of being generated, x being passed as blockinessCoefficient. As the chances get better,
+		//!the generated shape seems to become more and more blocky, hence the name.
+		//!@param count The amount of rooms to generate.
+		//!@param blockinessCoeff chance of one in blockinessCoeff to connect one room to another.
     	var rooms = new List<RoomNode>();
 
     	for(int i = 0; i < count; i++)
@@ -186,12 +191,18 @@ public partial class Testing : Node
 	}
 	void ConnectFloorRooms(RoomNode a, RoomNode b)
 	{
+		//!Adds both rooms to eachother's connection arrays.
     	a.Conns.Add(b);
     	b.Conns.Add(a);
 		//lol idek if i needed a function for this shit but oh well
 	}
 	public bool GenerateRoom(Godot.Vector2I tilePos, PackedScene roomScene)
 	{
+		//!Instantiates the room data as a roomNode. Checks for any collision between the room cells and already used cells
+		//!, aborts instantly if any cells conflict with eachother. If no conflicts are found, pastes the room's cells onto 
+		//!the TileMapLayer, then gets Markers of light positions, prop spawn positons and item spawn positions and adds them to HashSets.
+		//!@param tilePos Position to spawn the room at in the world's tile space.
+		//!@param roomScene Room scene to be spawned.
 		Node2D room = (Node2D)roomScene.Instantiate();
 		room.Position = tileLayer.MapToLocal(tilePos);
 		TileMapLayer roomTiles = (TileMapLayer)room.GetChild(0);
@@ -244,6 +255,7 @@ public partial class Testing : Node
 	}
 	Vector2I GetRoomSize(PackedScene scene)
 	{	
+		
     	if(roomSizeCache.TryGetValue(scene, out var size))
        		return size;
 		//if that room's size alr exists, then this returns instead of instatiating and saving.

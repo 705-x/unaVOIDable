@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+//!The physical body of an item when dropped into the world. Takes it's corresponding Resource and uses it as a blueprint to spawn the item in-game-world.
+
 public partial class ItemNode2D : RigidBody2D
 {
 	[Export]
@@ -35,6 +37,7 @@ public partial class ItemNode2D : RigidBody2D
 	
 	public void OnPickedUp(Item item)
 	{
+		//!QueueFrees the item when it is picked up.
 		QueueFree(); 
 	}
 
